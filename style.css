@@ -919,3 +919,92 @@ body {
 .favorite-button.active {
     color: #292b28;
 }
+
+/* ==================================================
+   音量
+================================================== */
+
+.volume-area {
+    margin-top: 24px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.volume-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.volume-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.volume-value {
+    font-size: 13px;
+    opacity: 0.7;
+    min-width: 42px;
+    text-align: right;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.volume-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+#volumeSlider {
+    width: 100%;
+    min-width: 0;
+    cursor: pointer;
+}
+
+/* ==================================================
+   音量
+================================================== */
+
+.volume-area {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.volume-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.volume-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+#volumeSlider {
+    width: 100%;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.volume-value {
+    width: 38px;
+    text-align: right;
+    font-size: 12px;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
