@@ -1,0 +1,921 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+
+    background: #f4f5f2;
+    color: #292b28;
+
+    font-family:
+        "Noto Sans JP",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+}
+
+
+/* =========================================
+   メニューボタン
+========================================= */
+
+.menu-button {
+    position: fixed;
+
+    left: 18px;
+    top: 18px;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 9px;
+
+    border: 1px solid #dedfdb;
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 5px;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.08);
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.menu-button:hover {
+    background: #f3f4f1;
+
+    transform: scale(1.04);
+}
+
+.menu-button:active {
+    transform: scale(0.95);
+}
+
+.menu-button span {
+    display: block;
+
+    width: 22px;
+    height: 2px;
+
+    background: #292b28;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================
+   左メニュー
+========================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 310px;
+
+    padding: 80px 20px 28px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e2e4df;
+
+    overflow-y: auto;
+
+    z-index: 100;
+
+    transform: translateX(0);
+
+    transition:
+        transform 0.25s ease;
+
+    box-shadow:
+        2px 0 12px rgba(0, 0, 0, 0.03);
+}
+
+
+/* 閉じた状態 */
+
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+
+/* =========================================
+   タイトル
+========================================= */
+
+.sidebar-title {
+    padding: 4px 2px 20px;
+
+    color: #242622;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    border-bottom: 1px solid #e7e8e4;
+}
+
+
+/* =========================================
+   検索
+========================================= */
+
+.search-area {
+    margin-top: 18px;
+}
+
+.search-area input {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 15px;
+
+    border: 1px solid #dedfdb;
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #f7f8f5;
+    color: #292b28;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s,
+        background 0.2s;
+}
+
+.search-area input::placeholder {
+    color: #9a9d96;
+}
+
+.search-area input:focus {
+    border-color: #aeb3aa;
+
+    background: #ffffff;
+}
+
+
+/* =========================================
+   音楽・効果音
+========================================= */
+
+.filter-types {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e7e8e4;
+}
+
+.filter-button {
+    width: 100%;
+    height: 42px;
+
+    border: 1px solid #dedfdb;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #676a64;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.15s;
+}
+
+.filter-button:hover {
+    background: #f5f6f3;
+}
+
+.filter-button:active {
+    transform: scale(0.97);
+}
+
+
+/* 選択中 */
+
+.filter-button.active {
+    background: #292b28;
+    color: #ffffff;
+
+    border-color: #292b28;
+}
+
+
+/* =========================================
+   タグ
+========================================= */
+
+.tag-filters {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 18px;
+}
+
+.tag-filter {
+    width: auto;
+
+    min-height: 34px;
+
+    padding: 5px 12px;
+
+    border: 1px solid #dedfdb;
+    border-radius: 999px;
+
+    background: #ffffff;
+    color: #6c6f68;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.15s;
+}
+
+.tag-filter:hover {
+    background: #f4f5f2;
+}
+
+.tag-filter:active {
+    transform: scale(0.96);
+}
+
+
+/* 選択中 */
+
+.tag-filter.active {
+    background: #292b28;
+    color: #ffffff;
+
+    border-color: #292b28;
+}
+
+
+/* =========================================
+   メイン
+========================================= */
+
+.main {
+    margin-left: 310px;
+
+    min-height: 100vh;
+
+    background: #f4f5f2;
+
+    transition:
+        margin-left 0.25s ease;
+}
+
+
+/* メニューを閉じた状態 */
+
+.main.sidebar-closed {
+    margin-left: 0;
+}
+
+
+/* =========================================
+   上部
+========================================= */
+
+.top-space {
+    height: 86px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e6e2;
+}
+
+
+/* =========================================
+   カード一覧
+========================================= */
+
+.radio-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    padding: 24px;
+}
+
+
+/* =========================================
+   カード
+========================================= */
+
+.radio-card {
+    min-width: 0;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e4df;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.035);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.radio-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================
+   サウンド名
+========================================= */
+
+.radio-name {
+    margin: 0 0 9px;
+
+    color: #282a26;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   ID
+========================================= */
+
+.id-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.radio-id {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
+
+    border-radius: 8px;
+
+    background: #f3f4f1;
+    color: #535650;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   コピー
+========================================= */
+
+.copy-button {
+    flex: 0 0 auto;
+
+    height: 32px;
+
+    padding: 0 12px;
+
+    border: 1px solid #dedfdb;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #555851;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.copy-button:hover {
+    background: #292b28;
+    color: #ffffff;
+
+    border-color: #292b28;
+}
+
+
+/* =========================================
+   カードタグ
+========================================= */
+
+.card-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-top: 10px;
+}
+
+.card-tag {
+    padding: 4px 9px;
+
+    border: 1px solid #e0e2dc;
+
+    border-radius: 999px;
+
+    background: #f7f8f5;
+    color: #73766f;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 10px;
+}
+
+
+/* =========================================
+   MP3プレイヤー
+========================================= */
+
+.player-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 16px;
+
+    padding: 10px;
+
+    background: #f7f8f5;
+
+    border-radius: 12px;
+}
+
+.play-button {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #292b28;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: 0.15s;
+}
+
+.play-button:hover {
+    background: #464943;
+
+    transform: scale(1.05);
+}
+
+.play-button:active {
+    transform: scale(0.94);
+}
+
+.audio-progress {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.progress-bar {
+    display: block;
+
+    width: 100%;
+    height: 4px;
+
+    accent-color: #292b28;
+
+    cursor: pointer;
+}
+
+.time {
+    margin-top: 5px;
+
+    color: #8a8d85;
+
+    text-align: right;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   URL
+========================================= */
+
+.url-area {
+    margin-top: 15px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #eeeeeb;
+}
+
+.url-label {
+    margin: 0;
+
+    color: #73766f;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.url-text {
+    display: block;
+
+    max-width: 100%;
+
+    margin-top: 4px;
+
+    color: #555851;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+    text-decoration: none;
+
+    word-break: break-all;
+}
+
+.url-text:hover {
+    color: #11120f;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   メモ
+========================================= */
+
+.note-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 15px;
+}
+
+.note-label {
+    margin: 0;
+
+    color: #73766f;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.note-edit-button {
+    padding: 4px 9px;
+
+    border: 1px solid #dedfdb;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #777a73;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 10px;
+}
+
+.note-edit-button:hover {
+    background: #292b28;
+
+    color: #ffffff;
+
+    border-color: #292b28;
+}
+
+
+/* =========================================
+   メモ入力
+========================================= */
+
+.personal-note-input {
+    display: none;
+
+    width: 100%;
+
+    min-height: 65px;
+
+    margin-top: 7px;
+
+    padding: 9px;
+
+    resize: vertical;
+
+    border: 1px solid #dedfdb;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #f8f9f6;
+    color: #343631;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.personal-note-input.open {
+    display: block;
+}
+
+.personal-note-input:focus {
+    background: #ffffff;
+
+    border-color: #aeb2a9;
+}
+
+
+/* =========================================
+   保存ボタン
+========================================= */
+
+.save-note-button {
+    display: none;
+
+    margin-top: 6px;
+
+    padding: 5px 11px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #292b28;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 10px;
+}
+
+.save-note-button.open {
+    display: inline-block;
+}
+
+
+/* =========================================
+   検索結果なし
+========================================= */
+
+.no-result {
+    display: none;
+
+    padding: 100px 20px;
+
+    color: #858880;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   スクロールバー
+========================================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d2d4ce;
+
+    border-radius: 99px;
+}
+
+
+/* =========================================
+   タブレット
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .sidebar {
+        width: 270px;
+    }
+
+    .main {
+        margin-left: 270px;
+    }
+
+    .radio-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   スマホ
+========================================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 280px;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .radio-grid {
+        grid-template-columns: 1fr;
+
+        padding: 14px;
+    }
+
+}
+
+.favorite-button {
+    border: none;
+    background: transparent;
+    color: #777a73;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    font-size: 22px;
+    line-height: 1;
+
+    transition:
+        transform 0.15s,
+        color 0.2s;
+}
+
+.favorite-button:hover {
+    transform: scale(1.12);
+}
+
+.favorite-button.active {
+    color: #292b28;
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card-header .radio-name {
+    flex: 1;
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card-header .radio-name {
+    flex: 1;
+}
+
+.favorite-button {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #777a73;
+
+    cursor: pointer;
+
+    font-size: 22px;
+    line-height: 1;
+
+    transition:
+        transform 0.15s,
+        color 0.2s;
+}
+
+.favorite-button:hover {
+    transform: scale(1.12);
+}
+
+.favorite-button.active {
+    color: #292b28;
+}

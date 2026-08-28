@@ -1,0 +1,147 @@
+<!-- このコードはAIを使用しています -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Danii-Radio-Memo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- メニュー開閉ボタン -->
+    <button
+        id="menuButton"
+        class="menu-button"
+        type="button"
+        aria-label="メニューを開閉"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+    <!-- 左側の絞り込みメニュー -->
+    <aside class="sidebar">
+
+        <div class="sidebar-title">
+            <span>絞り込み検索</span>
+        </div>
+
+
+        <!-- キーワード検索 -->
+        <div class="search-area">
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="キーワード検索"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- 種類 -->
+        <div class="filter-types">
+
+            <button
+                class="filter-button type-filter"
+                data-type="music"
+                type="button"
+            >
+                音楽
+            </button>
+
+
+            <button
+                class="filter-button type-filter"
+                data-type="effect"
+                type="button"
+            >
+                効果音
+            </button>
+
+
+            <!-- お気に入り -->
+            <button
+                class="filter-button favorite-filter"
+                id="favoriteFilter"
+                type="button"
+            >
+                お気に入り
+            </button>
+
+            <!-- 並び替え -->
+            <div class="sort-area">
+
+                <label for="sortSelect">
+                    並び順
+                </label>
+
+                <select id="sortSelect">
+
+                    <option value="name">
+                        名前順
+                    </option>
+
+                    <option value="oldest">
+                        古い順
+                    </option>
+
+                    <option value="newest">
+                        新しい順
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- タグ -->
+        <div
+            id="tagFilters"
+            class="tag-filters"
+        ></div>
+
+    </aside>
+
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+
+        <div class="top-space"></div>
+
+
+        <!-- サウンド一覧 -->
+        <div
+            id="radioList"
+            class="radio-grid"
+        ></div>
+
+
+        <!-- 検索結果がないとき -->
+        <div
+            id="noResult"
+            class="no-result"
+        >
+            該当するサウンドがありません。
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
