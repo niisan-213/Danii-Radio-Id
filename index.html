@@ -78,6 +78,7 @@
                 お気に入り
             </button>
 
+
             <!-- 並び替え -->
             <div class="sort-area">
 
@@ -111,6 +112,39 @@
             id="tagFilters"
             class="tag-filters"
         ></div>
+
+
+        <!-- 音量 -->
+        <div class="volume-area">
+
+    <div class="volume-title">
+        音量
+    </div>
+
+    <div class="volume-control">
+
+        <input
+            id="volumeSlider"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+            aria-label="音量"
+        >
+
+        <span
+            id="volumeValue"
+            class="volume-value"
+        >
+            50%
+        </span>
+
+    </div>
+
+</div>
+
+        </div>
 
     </aside>
 
