@@ -257,6 +257,30 @@ const radios = [
         "日本",
         "ボカロ"
     ]
+},
+
+{
+    name: "やっぱり俺の青春ラブコメに何の問題もね",
+    id: "93800438751265",
+    type: "music",
+    mp3: "sounds/93800438751265.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/93800438751265/やっぱり俺の青春ラブコメに何の問題もね",
+    officialUrl: "",
+    tags: [
+    ]
+},
+
+{
+    name: "huh car cat",
+    id: "132762282841552",
+    type: "effect",
+    mp3: "sounds/132762282841552.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/132762282841552/huh car cat",
+    officialUrl: "",
+    tags: [
+    ]
 }
 
 ];
