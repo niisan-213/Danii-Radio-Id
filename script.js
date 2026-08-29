@@ -176,6 +176,20 @@ const radios = [
             "日本",
             "ボカロ"
         ]
+    },
+
+    {
+        name: "ハナタバ",
+        id: "132966669971723",
+        type: "music",
+        mp3: "sounds/132966669971723.mp3",
+        soundSourceUrl:
+            "https://create.roblox.com/store/asset/132966669971723/%E3%83%8F%E3%83%8A%E3%82%BF%E3%83%90",
+        officialUrl: "",
+        tags: [
+            "日本",
+            "ボカロ"
+        ]
     }
 
 ];
