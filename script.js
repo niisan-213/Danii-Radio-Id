@@ -201,9 +201,7 @@ const radios = [
             "https://create.roblox.com/store/asset/7024340270/Pegboard-Nerds-Tokyo-Machine-Moshi",
         officialUrl:
             "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
-        tags: [
-            ""
-        ]
+        tags: []
     },
 
     {
