@@ -201,14 +201,16 @@ const radios = [
             "https://create.roblox.com/store/asset/7024340270/Pegboard-Nerds-Tokyo-Machine-Moshi",
         officialUrl:
             "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
-        tags: []
+        tags: [
+            ""
+        ]
     },
 
     {
         name: "Solar Drive",
         id: "140498777165558",
         type: "music",
-        mp3: "sounds/140498777165558.mp3",
+        mp3: "sounds/7024340270.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
         officialUrl:
@@ -1526,6 +1528,83 @@ function displayRadios(list) {
 
     reconnectCurrentAudio();
     setupProgressEvents();
+
+// ==========================================
+// 再生していないMP3の長さも取得
+// ==========================================
+
+radioList
+    .querySelectorAll(".play-button")
+    .forEach(button => {
+
+        const url = button.dataset.url;
+
+        if (!url) {
+            return;
+        }
+
+        const player =
+            button.closest(".player-area");
+
+        if (!player) {
+            return;
+        }
+
+        const durationElement =
+            player.querySelector(".duration");
+
+        if (!durationElement) {
+            return;
+        }
+
+        // 現在再生中の音源なら、既存のAudioを使う
+        if (
+            currentAudio &&
+            currentRadioId === button.dataset.radioId
+        ) {
+            if (
+                Number.isFinite(
+                    currentAudio.duration
+                )
+            ) {
+                durationElement.textContent =
+                    formatTime(currentAudio.duration);
+            }
+
+            return;
+        }
+
+        // 長さだけ取得するAudio
+        const audio =
+            new Audio();
+
+        audio.preload = "metadata";
+
+        audio.addEventListener(
+            "loadedmetadata",
+            () => {
+
+                if (
+                    Number.isFinite(
+                        audio.duration
+                    )
+                ) {
+
+                    durationElement.textContent =
+                        formatTime(audio.duration);
+
+                }
+
+                audio.removeAttribute("src");
+                audio.load();
+
+            },
+            { once: true }
+        );
+
+        audio.src = url;
+
+    });
 
 }
 
