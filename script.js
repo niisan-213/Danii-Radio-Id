@@ -224,7 +224,21 @@ const radios = [
         type: "music",
         mp3: "sounds/72999239742034.mp3",
         soundSourceUrl:
-            "https://create.roblox.com/store/asset/72999239742034/%E3%81%99%E3%82%8D%E3%83%BC%E3%82%8A%E3%83%BC",
+            "https://create.roblox.com/store/asset/72999239742034/すろーりーないと",
+        officialUrl: "",
+        tags: [
+            "日本",
+            "ボカロ"
+        ]
+    },
+
+    {
+        name: "トリックハート",
+        id: "123268426492417",
+        type: "music",
+        mp3: "sounds/123268426492417.mp3",
+        soundSourceUrl:
+            "https://create.roblox.com/store/asset/123268426492417/トリックハート",
         officialUrl: "",
         tags: [
             "日本",
@@ -233,12 +247,12 @@ const radios = [
     }
 
     {
-        name: "トリックハート",
-        id: "123268426492417",
+        name: "くうになる",
+        id: "138077217004132",
         type: "music",
-        mp3: "sounds/123268426492417.mp3",
+        mp3: "sounds/138077217004132.mp3",
         soundSourceUrl:
-            "https://create.roblox.com/store/asset/123268426492417/%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%83%8F",
+            "https://create.roblox.com/store/asset/138077217004132/くうになる",
         officialUrl: "",
         tags: [
             "日本",
