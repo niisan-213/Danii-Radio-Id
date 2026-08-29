@@ -70,7 +70,7 @@ const radios = [
         name: "Monitoring Remix (inspired by Deco27)",
         id: "92292285830973",
         type: "music",
-        mp3: "",
+        mp3: "sounds/92292285830973.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/92292285830973/Monitoring-Remix-inspired-by-Deco27",
         officialUrl:
