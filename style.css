@@ -52,8 +52,7 @@ body {
 
     z-index: 1000;
 
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: none;
 
     transition:
         background 0.2s,
@@ -110,8 +109,7 @@ body {
     transition:
         transform 0.25s ease;
 
-    box-shadow:
-        2px 0 12px rgba(0, 0, 0, 0.03);
+    box-shadow: none;
 }
 
 
@@ -363,10 +361,9 @@ body {
 
     border: 1px solid #e2e4df;
 
-    border-radius: 17px;
+    border-radius: 0px;
 
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.035);
+    box-shadow: none;
 
     transition:
         transform 0.2s,
@@ -374,10 +371,7 @@ body {
 }
 
 .radio-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.07);
+    box-shadow: none;
 }
 
 
