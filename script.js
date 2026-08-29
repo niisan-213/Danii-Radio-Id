@@ -56,7 +56,7 @@ const radios = [
         name: "F-L-Y | Hatsune Miku【Vocaloid Reimagined】Day 1",
         id: "76819270320985",
         type: "music",
-        mp3: "",
+        mp3: "sounds/76819270320985.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/76819270320985/FLY-Hatsune-MikuVocaloid-ReimaginedDay-1",
         officialUrl:
@@ -92,7 +92,8 @@ const radios = [
             "https://youtu.be/abwf-BdPFsQ?si=oS-r8xhUNXreV9On",
         tags: [
             "日本",
-            "ボカロ"
+            "ボカロ",
+            "Phonk"
         ]
     },
 
@@ -965,16 +966,19 @@ function getFilteredRadios() {
 
                 const searchText = [
 
-                    radio.name,
-                    radio.id,
-                    radio.soundSourceUrl,
-                    radio.officialUrl,
-                    radio.type,
-                    ...(radio.tags || [])
+    radio.name,
+    radio.id,
+    radio.soundSourceUrl,
+    radio.officialUrl,
+    radio.type,
+    ...(radio.tags || []),
 
-                ]
-                    .join(" ")
-                    .toLowerCase();
+    // 個人メモも検索対象にする
+    personalNotes[getRadioKey(radio)] || ""
+
+]
+.join(" ")
+.toLowerCase();
 
                 const keywordMatch =
                     !keyword ||
@@ -1444,35 +1448,27 @@ function displayRadios(list) {
 
                 <div class="note-area">
 
-                    <p class="note-label">
-                        メモ
-                    </p>
+    <p class="note-label">
+        メモ
+    </p>
 
-                    <button
-                        type="button"
-                        class="note-edit-button"
-                        data-key="${escapeHTML(key)}"
-                    >
-                        編集
-                    </button>
-
-                </div>
+</div>
 
 
-                <textarea
-                    class="personal-note-input"
-                    data-key="${escapeHTML(key)}"
-                    placeholder="自分用のメモ..."
-                >${escapeHTML(savedNote)}</textarea>
+<textarea
+    class="personal-note-input open"
+    data-key="${escapeHTML(key)}"
+    placeholder="自分用のメモ..."
+>${escapeHTML(savedNote)}</textarea>
 
 
-                <button
-                    type="button"
-                    class="save-note-button"
-                    data-key="${escapeHTML(key)}"
-                >
-                    保存
-                </button>
+<button
+    type="button"
+    class="save-note-button open"
+    data-key="${escapeHTML(key)}"
+>
+    保存
+</button>
 
             `;
 
