@@ -85,7 +85,7 @@ const radios = [
         name: "CUTEMAKMAKFUNK (Slowed)",
         id: "120871403922972",
         type: "music",
-        mp3: "",
+        mp3: "sounds/120871403922972.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/120871403922972/CUTEMAKMAKFUNK-Slowed",
         officialUrl:
