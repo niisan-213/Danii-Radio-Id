@@ -202,7 +202,21 @@ const radios = [
         officialUrl:
             "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
         tags: [
-            "ミーム"
+            ""
+        ]
+    },
+
+    {
+        name: "Solar Drive",
+        id: "140498777165558",
+        type: "music",
+        mp3: "sounds/7024340270.mp3",
+        soundSourceUrl:
+            "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
+        officialUrl:
+            "",
+        tags: [
+            "日本"
         ]
     }
 
