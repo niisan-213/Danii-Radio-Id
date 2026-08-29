@@ -232,6 +232,20 @@ const radios = [
         ]
     }
 
+    {
+        name: "トリックハート",
+        id: "123268426492417",
+        type: "music",
+        mp3: "sounds/123268426492417.mp3",
+        soundSourceUrl:
+            "https://create.roblox.com/store/asset/123268426492417/%E3%83%88%E3%83%AA%E3%83%83%E3%82%AF%E3%83%8F",
+        officialUrl: "",
+        tags: [
+            "日本",
+            "ボカロ"
+        ]
+    }
+
 ];
 
 
@@ -356,11 +370,11 @@ try {
 function escapeHTML(value) {
 
     return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll("&", "&")
+        .replaceAll("<", "<")
+        .replaceAll(">", ">")
+        .replaceAll('"', """)
+        .replaceAll("'", "'");
 
 }
 
@@ -935,7 +949,7 @@ function getNameCategory(name) {
     // ひらがな
     // 元コードの [u3040-u309F] は間違い
     if (
-        /[\u3040-\u309F]/.test(
+        /[u3040-u309F]/.test(
             first
         )
     ) {
