@@ -277,10 +277,61 @@ const radios = [
     type: "effect",
     mp3: "sounds/132762282841552.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/132762282841552/huh car cat",
+        "https://create.roblox.com/store/asset/132762282841552/huh-car-cat",
     officialUrl: "",
     tags: [
         "ミーム"
+    ]
+},
+
+{
+    name: "iphone alarm [loud]",
+    id: "4203251375",
+    type: "effect",
+    mp3: "sounds/4203251375.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/4203251375/iphone-alarm-loud",
+    officialUrl: "",
+    tags: [
+    ]
+},
+
+{
+    name: "FindExit",
+    id: "71186345039796",
+    type: "music",
+    mp3: "sounds/71186345039796.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/71186345039796/FindExit",
+    officialUrl: "",
+    tags: [
+    ]
+},
+
+{
+    name: "Good Android",
+    id: "123572020022002",
+    type: "music",
+    mp3: "sounds/123572020022002.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/123572020022002/Good-Android",
+    officialUrl: "",
+    tags: [
+        "日本",
+        "東方"
+    ]
+},
+
+{
+    name: "Science Mysteries",
+    id: "1840776993",
+    type: "music",
+    mp3: "sounds/1840776993.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/1840776993/Science-Mysteries",
+    officialUrl: "",
+    tags: [
+        "ゲーム"
     ]
 }
 
