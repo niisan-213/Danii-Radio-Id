@@ -1499,6 +1499,7 @@ function displayRadios(list) {
     // ==========================================
 
     reconnectCurrentAudio();
+    setupProgressEvents();
 
 }
 
@@ -1898,48 +1899,52 @@ if (radioList) {
 function setupProgressEvents() {
 
     document
-        .querySelectorAll(
-            ".progress-bar"
-        )
-        .forEach(
-            progress => {
+        .querySelectorAll(".progress-bar")
+        .forEach(progress => {
 
-                progress.addEventListener(
-                    "input",
-                    () => {
+            progress.addEventListener(
+                "input",
+                () => {
 
-                        if (
-                            !currentAudio ||
-                            currentProgress !== progress
-                        ) {
+                    // 現在再生中のAudioではない場合
+                    if (
+                        !currentAudio ||
+                        currentProgress !== progress
+                    ) {
+                        return;
+                    }
 
-                            return;
+                    // 再生時間がまだ取得できていない場合
+                    if (
+                        !Number.isFinite(
+                            currentAudio.duration
+                        ) ||
+                        currentAudio.duration <= 0
+                    ) {
+                        return;
+                    }
 
-                        }
+                    // バーの位置から再生位置を変更
+                    const percent =
+                        Number(progress.value) / 100;
 
-                        if (
-                            !Number.isFinite(
-                                currentAudio.duration
-                            )
-                        ) {
+                    currentAudio.currentTime =
+                        currentAudio.duration * percent;
 
-                            return;
+                    // 時間表示もすぐ更新
+                    if (currentTimeElement) {
 
-                        }
-
-                        currentAudio.currentTime =
-                            currentAudio.duration *
-                            (
-                                Number(
-                                    progress.value
-                                ) / 100
+                        currentTimeElement.textContent =
+                            formatTime(
+                                currentAudio.currentTime
                             );
 
                     }
-                );
 
-            }
-        );
+                }
+            );
+
+        });
 
 }
 
