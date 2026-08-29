@@ -218,6 +218,20 @@ const radios = [
         tags: [
             "日本"
         ]
+    },
+
+    {
+        name: "すろーりーないと",
+        id: "140498777165558",
+        type: "music",
+        mp3: "sounds/140498777165558.mp3",
+        soundSourceUrl:
+            "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
+        officialUrl:
+            "",
+        tags: [
+            "日本"
+        ]
     }
 
 ];
@@ -333,11 +347,11 @@ try {
 function escapeHTML(value) {
 
     return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll("&", "&")
+        .replaceAll("<", "<")
+        .replaceAll(">", ">")
+        .replaceAll('"', """)
+        .replaceAll("'", "'");
 
 }
 
@@ -885,7 +899,7 @@ function getNameCategory(name) {
     }
 
     if (
-        /[\u3040-\u309F]/.test(
+        /[u3040-u309F]/.test(
             first
         )
     ) {
