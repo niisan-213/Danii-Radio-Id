@@ -201,35 +201,22 @@ const radios = [
             "https://create.roblox.com/store/asset/7024340270/Pegboard-Nerds-Tokyo-Machine-Moshi",
         officialUrl:
             "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
-        tags: []
+        tags: [
+            ""
+        ]
     },
 
     {
         name: "Solar Drive",
         id: "140498777165558",
         type: "music",
-        mp3: "sounds/140498777165558.mp3",
+        mp3: "sounds/7024340270.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
         officialUrl:
             "",
         tags: [
             "日本"
-        ]
-    },
-
-    {
-        name: "すろーりーないと",
-        id: "72999239742034",
-        type: "music",
-        mp3: "sounds/72999239742034.mp3",
-        soundSourceUrl:
-            "https://create.roblox.com/store/asset/72999239742034/%E3%81%99%E3%82%8D%E3%83%BC%E3%82%8A%E3%83%BC",
-        officialUrl:
-            "",
-        tags: [
-            "日本",
-            "ボカロ"
         ]
     }
 
@@ -346,11 +333,11 @@ try {
 function escapeHTML(value) {
 
     return String(value ?? "")
-        .replaceAll("&", "&")
-        .replaceAll("<", "<")
-        .replaceAll(">", ">")
-        .replaceAll('"', """)
-        .replaceAll("'", "'");
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
 }
 
@@ -898,7 +885,7 @@ function getNameCategory(name) {
     }
 
     if (
-        /[u3040-u309F]/.test(
+        /[\u3040-\u309F]/.test(
             first
         )
     ) {
