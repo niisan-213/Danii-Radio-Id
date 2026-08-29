@@ -244,7 +244,7 @@ const radios = [
             "日本",
             "ボカロ"
         ]
-    }
+    },
 
     {
         name: "くうになる",
@@ -285,20 +285,34 @@ let personalNotes = {};
 
 try {
 
-    personalNotes = JSON.parse(
+    const savedNotes =
         localStorage.getItem(
             NOTE_STORAGE_KEY
-        ) || "{}"
-    );
+        );
 
-    if (
-        !personalNotes ||
-        typeof personalNotes !== "object"
-    ) {
-        personalNotes = {};
+    if (savedNotes) {
+
+        const parsed =
+            JSON.parse(savedNotes);
+
+        if (
+            parsed &&
+            typeof parsed === "object" &&
+            !Array.isArray(parsed)
+        ) {
+
+            personalNotes = parsed;
+
+        }
+
     }
 
-} catch {
+} catch (error) {
+
+    console.warn(
+        "個人メモを読み込めませんでした。",
+        error
+    );
 
     personalNotes = {};
 
@@ -314,23 +328,34 @@ let favorites = new Set();
 try {
 
     const savedFavorites =
-        JSON.parse(
-            localStorage.getItem(
-                FAVORITE_STORAGE_KEY
-            ) || "[]"
+        localStorage.getItem(
+            FAVORITE_STORAGE_KEY
         );
 
-    if (Array.isArray(savedFavorites)) {
+    if (savedFavorites) {
 
-        favorites = new Set(
-            savedFavorites.map(
-                id => String(id)
-            )
-        );
+        const parsed =
+            JSON.parse(savedFavorites);
+
+        if (Array.isArray(parsed)) {
+
+            favorites =
+                new Set(
+                    parsed.map(
+                        id => String(id)
+                    )
+                );
+
+        }
 
     }
 
-} catch {
+} catch (error) {
+
+    console.warn(
+        "お気に入りを読み込めませんでした。",
+        error
+    );
 
     favorites = new Set();
 
@@ -384,11 +409,11 @@ try {
 function escapeHTML(value) {
 
     return String(value ?? "")
-        .replaceAll("&", "&")
-        .replaceAll("<", "<")
-        .replaceAll(">", ">")
-        .replaceAll('"', """)
-        .replaceAll("'", "'");
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
 }
 
@@ -403,16 +428,17 @@ function safeURL(url) {
         return "";
     }
 
-    url = String(url).trim();
+    const value =
+        String(url).trim();
 
-    // MP3などの相対パス
+    // 相対MP3パス
     if (
-        url.startsWith("./") ||
-        url.startsWith("../") ||
-        url.startsWith("sounds/")
+        value.startsWith("./") ||
+        value.startsWith("../") ||
+        value.startsWith("sounds/")
     ) {
 
-        return url;
+        return value;
 
     }
 
@@ -420,7 +446,7 @@ function safeURL(url) {
 
         const parsed =
             new URL(
-                url,
+                value,
                 window.location.href
             );
 
@@ -435,6 +461,7 @@ function safeURL(url) {
 
     } catch {
 
+        // 無効なURL
     }
 
     return "";
@@ -528,7 +555,9 @@ let currentButton = null;
 
 function getRadioKey(radio) {
 
-    return String(radio.id);
+    return String(
+        radio.id
+    );
 
 }
 
@@ -548,10 +577,11 @@ function saveFavorites() {
             )
         );
 
-    } catch {
+    } catch (error) {
 
         console.warn(
-            "お気に入りを保存できませんでした。"
+            "お気に入りを保存できませんでした。",
+            error
         );
 
     }
@@ -588,8 +618,13 @@ function toggleFavorite(id) {
 
 function formatTime(seconds) {
 
-    if (!Number.isFinite(seconds)) {
+    if (
+        !Number.isFinite(seconds) ||
+        seconds < 0
+    ) {
+
         return "0:00";
+
     }
 
     const minutes =
@@ -667,6 +702,7 @@ function setVolume(value) {
 
     } catch {
 
+        // 保存できなくても動作は継続
     }
 
     if (currentAudio) {
@@ -713,22 +749,27 @@ updateVolumeUI();
 
 function getAllTags() {
 
-    const tags = new Set();
+    const tags =
+        new Set();
 
     radios.forEach(
         radio => {
 
-            (
-                radio.tags || []
-            ).forEach(
+            if (!Array.isArray(radio.tags)) {
+                return;
+            }
+
+            radio.tags.forEach(
                 tag => {
 
-                    tag =
+                    const cleanTag =
                         String(tag).trim();
 
-                    if (tag) {
+                    if (cleanTag) {
 
-                        tags.add(tag);
+                        tags.add(
+                            cleanTag
+                        );
 
                     }
 
@@ -769,7 +810,8 @@ function createTagFilters() {
                     "button"
                 );
 
-            button.type = "button";
+            button.type =
+                "button";
 
             button.className =
                 "tag-filter";
@@ -961,9 +1003,8 @@ function getNameCategory(name) {
     }
 
     // ひらがな
-    // 元コードの [u3040-u309F] は間違い
     if (
-        /[u3040-u309F]/.test(
+        /[\u3040-\u309F]/.test(
             first
         )
     ) {
@@ -1060,10 +1101,6 @@ function sortRadios(list) {
 
             break;
 
-        default:
-
-            break;
-
     }
 
     return sorted;
@@ -1077,46 +1114,42 @@ function sortRadios(list) {
 
 function getFilteredRadios() {
 
-    // ------------------------------------------
-    // キーワード
-    // ------------------------------------------
-
     const keyword =
         searchInput
             ? String(
                 searchInput.value || ""
             )
                 .trim()
-                .toLocaleLowerCase("ja-JP")
+                .toLocaleLowerCase(
+                    "ja-JP"
+                )
             : "";
 
 
-    const filtered =
+    return sortRadios(
         radios.filter(
             radio => {
 
-                // ==========================================
-                // 検索対象テキスト
-                // ==========================================
+                // ------------------------------------------
+                // 検索対象
+                // ------------------------------------------
+
+                const note =
+                    personalNotes[
+                        getRadioKey(radio)
+                    ] || "";
 
                 const searchText = [
 
                     radio.name,
-
                     radio.id,
-
                     radio.soundSourceUrl,
-
                     radio.officialUrl,
-
                     radio.type,
-
-                    ...(radio.tags || []),
-
-                    // 個人メモも検索対象
-                    personalNotes[
-                        getRadioKey(radio)
-                    ] || ""
+                    ...(Array.isArray(radio.tags)
+                        ? radio.tags
+                        : []),
+                    note
 
                 ]
                     .filter(
@@ -1130,9 +1163,9 @@ function getFilteredRadios() {
                     );
 
 
-                // ==========================================
-                // キーワード一致
-                // ==========================================
+                // ------------------------------------------
+                // キーワード
+                // ------------------------------------------
 
                 const keywordMatch =
                     !keyword ||
@@ -1141,9 +1174,9 @@ function getFilteredRadios() {
                     );
 
 
-                // ==========================================
-                // タイプ一致
-                // ==========================================
+                // ------------------------------------------
+                // タイプ
+                // ------------------------------------------
 
                 let typeMatch = true;
 
@@ -1161,12 +1194,11 @@ function getFilteredRadios() {
                 }
 
 
-                // ==========================================
-                // タグ一致
+                // ------------------------------------------
+                // タグ
                 //
-                // 複数タグを選んだ場合は
-                // 「どれか1つ」に一致すれば表示
-                // ==========================================
+                // 複数選択時はOR検索
+                // ------------------------------------------
 
                 let tagMatch = true;
 
@@ -1197,11 +1229,12 @@ function getFilteredRadios() {
                 }
 
 
-                // ==========================================
-                // お気に入り一致
-                // ==========================================
+                // ------------------------------------------
+                // お気に入り
+                // ------------------------------------------
 
-                let favoriteMatch = true;
+                let favoriteMatch =
+                    true;
 
                 if (favoriteOnly) {
 
@@ -1215,9 +1248,9 @@ function getFilteredRadios() {
                 }
 
 
-                // ==========================================
+                // ------------------------------------------
                 // 最終判定
-                // ==========================================
+                // ------------------------------------------
 
                 return (
                     keywordMatch &&
@@ -1227,15 +1260,7 @@ function getFilteredRadios() {
                 );
 
             }
-        );
-
-
-    // ==========================================
-    // 並び替え
-    // ==========================================
-
-    return sortRadios(
-        filtered
+        )
     );
 
 }
@@ -1257,32 +1282,12 @@ function reconnectCurrentAudio() {
 
     }
 
-    const buttons =
-        radioList.querySelectorAll(
-            ".play-button"
+    const button =
+        radioList.querySelector(
+            `.play-button[data-radio-id="${CSS.escape(
+                String(currentRadioId)
+            )}"]`
         );
-
-    let button = null;
-
-    buttons.forEach(
-        item => {
-
-            if (
-                String(
-                    item.dataset.radioId
-                ) ===
-                String(
-                    currentRadioId
-                )
-            ) {
-
-                button = item;
-
-            }
-
-        }
-    );
-
 
     if (!button) {
 
@@ -1295,7 +1300,6 @@ function reconnectCurrentAudio() {
 
     }
 
-
     const player =
         button.closest(
             ".player-area"
@@ -1304,7 +1308,6 @@ function reconnectCurrentAudio() {
     if (!player) {
         return;
     }
-
 
     currentButton =
         button;
@@ -1325,20 +1328,14 @@ function reconnectCurrentAudio() {
         );
 
 
-    // ------------------------------------------
-    // 再生 / 一時停止状態
-    // ------------------------------------------
-
+    // 再生 / 一時停止
     button.textContent =
         currentAudio.paused
             ? "▶"
             : "Ⅱ";
 
 
-    // ------------------------------------------
-    // 再生時間
-    // ------------------------------------------
-
+    // 時間
     if (
         Number.isFinite(
             currentAudio.duration
@@ -1394,7 +1391,7 @@ function displayRadios(list) {
 
 
     // ==========================================
-    // 検索結果0件
+    // 0件
     // ==========================================
 
     if (list.length === 0) {
@@ -1446,9 +1443,7 @@ function displayRadios(list) {
 
 
             const isFavorite =
-                favorites.has(
-                    key
-                );
+                favorites.has(key);
 
 
             // ==========================================
@@ -1456,7 +1451,13 @@ function displayRadios(list) {
             // ==========================================
 
             const tagsHTML =
-                (radio.tags || [])
+                (
+                    Array.isArray(
+                        radio.tags
+                    )
+                        ? radio.tags
+                        : []
+                )
                     .map(
                         tag => `
 
@@ -1482,7 +1483,8 @@ function displayRadios(list) {
                     radio.mp3
                 );
 
-            let playerHTML = "";
+            let playerHTML =
+                "";
 
 
             if (mp3) {
@@ -1543,25 +1545,21 @@ function displayRadios(list) {
                     radio.soundSourceUrl
                 );
 
-            let soundSourceHTML = "";
+            const soundSourceHTML =
+                soundSource
+                    ? `
 
+                        <a
+                            class="url-text"
+                            href="${escapeHTML(soundSource)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(soundSource)}
+                        </a>
 
-            if (soundSource) {
-
-                soundSourceHTML = `
-
-                    <a
-                        class="url-text"
-                        href="${escapeHTML(soundSource)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        ${escapeHTML(soundSource)}
-                    </a>
-
-                `;
-
-            }
+                    `
+                    : `<span class="url-empty">なし</span>`;
 
 
             // ==========================================
@@ -1573,25 +1571,21 @@ function displayRadios(list) {
                     radio.officialUrl
                 );
 
-            let officialHTML = "";
+            const officialHTML =
+                official
+                    ? `
 
+                        <a
+                            class="url-text"
+                            href="${escapeHTML(official)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHTML(official)}
+                        </a>
 
-            if (official) {
-
-                officialHTML = `
-
-                    <a
-                        class="url-text"
-                        href="${escapeHTML(official)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        ${escapeHTML(official)}
-                    </a>
-
-                `;
-
-            }
+                    `
+                    : `<span class="url-empty">なし</span>`;
 
 
             // ==========================================
@@ -1726,21 +1720,21 @@ function displayRadios(list) {
 
 
     // ==========================================
-    // 再生中のAudioを新しいカードへ接続
+    // 再生中Audioを再接続
     // ==========================================
 
     reconnectCurrentAudio();
 
 
     // ==========================================
-    // プログレスバーイベント
+    // プログレスバー
     // ==========================================
 
     setupProgressEvents();
 
 
     // ==========================================
-    // 再生していないMP3の長さも取得
+    // MP3の長さ取得
     // ==========================================
 
     radioList
@@ -1781,8 +1775,8 @@ function displayRadios(list) {
                 // 現在再生中の音源
                 if (
                     currentAudio &&
-                    currentRadioId ===
-                        button.dataset.radioId
+                    String(currentRadioId) ===
+                        String(button.dataset.radioId)
                 ) {
 
                     if (
@@ -1803,7 +1797,7 @@ function displayRadios(list) {
                 }
 
 
-                // 長さだけ取得
+                // メタデータだけ取得
                 const audio =
                     new Audio();
 
@@ -1918,14 +1912,14 @@ function applyFilters() {
 
 
 // ==================================================
-// カードクリック
+// カード操作
 // ==================================================
 
 if (radioList) {
 
     radioList.addEventListener(
         "click",
-        event => {
+        async event => {
 
             // ==========================================
             // お気に入り
@@ -1947,22 +1941,18 @@ if (radioList) {
 
                 toggleFavorite(id);
 
-
                 const isFavorite =
                     favorites.has(id);
-
 
                 favoriteButton.classList.toggle(
                     "active",
                     isFavorite
                 );
 
-
                 favoriteButton.textContent =
                     isFavorite
                         ? "★"
                         : "☆";
-
 
                 favoriteButton.setAttribute(
                     "aria-label",
@@ -1970,7 +1960,6 @@ if (radioList) {
                         ? "お気に入りを解除"
                         : "お気に入りに追加"
                 );
-
 
                 favoriteButton.setAttribute(
                     "title",
@@ -1995,7 +1984,7 @@ if (radioList) {
 
 
             // ==========================================
-            // タグ
+            // カードタグ
             // ==========================================
 
             const tagButton =
@@ -2011,7 +2000,6 @@ if (radioList) {
                 if (!tag) {
                     return;
                 }
-
 
                 if (
                     selectedTags.has(tag)
@@ -2029,9 +2017,7 @@ if (radioList) {
 
                 }
 
-
                 updateTagButtons();
-
                 applyFilters();
 
                 return;
@@ -2071,12 +2057,10 @@ if (radioList) {
                         ".progress-bar"
                     );
 
-
                 const currentTime =
                     player.querySelector(
                         ".current-time"
                     );
-
 
                 const duration =
                     player.querySelector(
@@ -2091,6 +2075,26 @@ if (radioList) {
                     progress,
                     currentTime,
                     duration
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // IDコピー
+            // ==========================================
+
+            const copyButton =
+                event.target.closest(
+                    ".copy-button"
+                );
+
+            if (copyButton) {
+
+                await copyID(
+                    copyButton
                 );
 
                 return;
@@ -2127,120 +2131,129 @@ if (radioList) {
 // IDコピー
 // ==================================================
 
-if (radioList) {
+async function copyID(button) {
 
-    radioList.addEventListener(
-        "click",
-        async event => {
+    const id =
+        button.dataset.id;
 
-            const button =
-                event.target.closest(
-                    ".copy-button"
-                );
-
-            if (!button) {
-                return;
-            }
+    if (!id) {
+        return;
+    }
 
 
-            const id =
-                button.dataset.id;
+    try {
 
-            if (!id) {
-                return;
-            }
+        if (
+            navigator.clipboard &&
+            navigator.clipboard.writeText
+        ) {
 
+            await navigator.clipboard.writeText(
+                id
+            );
 
-            try {
+        } else {
 
-                await navigator.clipboard.writeText(
-                    id
-                );
-
-
-                button.textContent =
-                    "コピー済";
-
-
-                setTimeout(
-                    () => {
-
-                        if (
-                            button.isConnected
-                        ) {
-
-                            button.textContent =
-                                "コピー";
-
-                        }
-
-                    },
-                    1000
-                );
-
-            } catch {
-
-                // Clipboard APIが使えない場合
-                try {
-
-                    const textarea =
-                        document.createElement(
-                            "textarea"
-                        );
-
-                    textarea.value =
-                        id;
-
-                    textarea.style.position =
-                        "fixed";
-
-                    textarea.style.opacity =
-                        "0";
-
-                    document.body.appendChild(
-                        textarea
-                    );
-
-                    textarea.focus();
-                    textarea.select();
-
-                    document.execCommand(
-                        "copy"
-                    );
-
-                    textarea.remove();
-
-                    button.textContent =
-                        "コピー済";
-
-
-                    setTimeout(
-                        () => {
-
-                            if (
-                                button.isConnected
-                            ) {
-
-                                button.textContent =
-                                    "コピー";
-
-                            }
-
-                        },
-                        1000
-                    );
-
-                } catch {
-
-                    alert(
-                        "IDをコピーできませんでした。"
-                    );
-
-                }
-
-            }
+            throw new Error(
+                "Clipboard API unavailable"
+            );
 
         }
+
+
+        showCopySuccess(
+            button
+        );
+
+    } catch {
+
+        // ------------------------------------------
+        // Clipboard APIが使えない場合
+        // ------------------------------------------
+
+        try {
+
+            const textarea =
+                document.createElement(
+                    "textarea"
+                );
+
+            textarea.value =
+                id;
+
+            textarea.style.position =
+                "fixed";
+
+            textarea.style.left =
+                "-9999px";
+
+            textarea.style.opacity =
+                "0";
+
+            document.body.appendChild(
+                textarea
+            );
+
+            textarea.focus();
+            textarea.select();
+
+            const success =
+                document.execCommand(
+                    "copy"
+                );
+
+            textarea.remove();
+
+
+            if (!success) {
+
+                throw new Error(
+                    "copy failed"
+                );
+
+            }
+
+
+            showCopySuccess(
+                button
+            );
+
+        } catch {
+
+            alert(
+                "IDをコピーできませんでした。"
+            );
+
+        }
+
+    }
+
+}
+
+
+// ==================================================
+// コピー成功表示
+// ==================================================
+
+function showCopySuccess(button) {
+
+    button.textContent =
+        "コピー済";
+
+    setTimeout(
+        () => {
+
+            if (
+                button.isConnected
+            ) {
+
+                button.textContent =
+                    "コピー";
+
+            }
+
+        },
+        1000
     );
 
 }
@@ -2262,10 +2275,31 @@ function savePersonalNote(
     }
 
 
-    const textarea =
-        radioList.querySelector(
-            `.personal-note-input[data-key="${CSS.escape(key)}"]`
+    // CSS.escapeに依存しない取得方法
+    let textarea = null;
+
+    radioList
+        .querySelectorAll(
+            ".personal-note-input"
+        )
+        .forEach(
+            item => {
+
+                if (
+                    String(
+                        item.dataset.key
+                    ) ===
+                    String(key)
+                ) {
+
+                    textarea =
+                        item;
+
+                }
+
+            }
         );
+
 
     if (!textarea) {
         return;
@@ -2332,7 +2366,6 @@ function setupProgressEvents() {
         .forEach(
             progress => {
 
-                // 同じ要素に何度もイベントを登録しない
                 if (
                     progress.dataset.progressReady ===
                     "true"
@@ -2351,7 +2384,6 @@ function setupProgressEvents() {
                     "input",
                     () => {
 
-                        // 現在再生中のAudioではない
                         if (
                             !currentAudio ||
                             currentProgress !==
@@ -2363,7 +2395,6 @@ function setupProgressEvents() {
                         }
 
 
-                        // 再生時間が未取得
                         if (
                             !Number.isFinite(
                                 currentAudio.duration
@@ -2435,7 +2466,7 @@ function playMP3(
 
     if (
         currentAudio &&
-        currentRadioId === id
+        String(currentRadioId) === id
     ) {
 
         currentButton =
@@ -2457,41 +2488,13 @@ function playMP3(
 
             currentAudio
                 .play()
-                .then(
-                    () => {
-
-                        if (
-                            currentButton
-                        ) {
-
-                            currentButton.textContent =
-                                "Ⅱ";
-
-                        }
-
-                    }
-                )
                 .catch(
-                    () => {
-
-                        if (
-                            currentButton
-                        ) {
-
-                            currentButton.textContent =
-                                "▶";
-
-                        }
-
-                    }
+                    () => {}
                 );
 
         } else {
 
             currentAudio.pause();
-
-            button.textContent =
-                "▶";
 
         }
 
@@ -2514,12 +2517,9 @@ function playMP3(
     const audio =
         new Audio(url);
 
-
     audio.preload =
         "metadata";
 
-
-    // Audio.volume は 0～1
     audio.volume =
         volume / 100;
 
@@ -2544,7 +2544,7 @@ function playMP3(
 
 
     // ==========================================
-    // 読み込み完了
+    // メタデータ読み込み
     // ==========================================
 
     audio.addEventListener(
@@ -2555,401 +2555,3 @@ function playMP3(
                 Number.isFinite(
                     audio.duration
                 )
-            ) {
-
-                if (duration) {
-
-                    duration.textContent =
-                        formatTime(
-                            audio.duration
-                        );
-
-                }
-
-            }
-
-        }
-    );
-
-
-    // ==========================================
-    // 再生時間
-    // ==========================================
-
-    audio.addEventListener(
-        "timeupdate",
-        () => {
-
-            if (
-                !Number.isFinite(
-                    audio.duration
-                ) ||
-                audio.duration <= 0
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                currentAudio === audio &&
-                currentProgress
-            ) {
-
-                currentProgress.value =
-                    (
-                        audio.currentTime /
-                        audio.duration
-                    ) * 100;
-
-            }
-
-
-            if (
-                currentAudio === audio &&
-                currentTimeElement
-            ) {
-
-                currentTimeElement.textContent =
-                    formatTime(
-                        audio.currentTime
-                    );
-
-            }
-
-        }
-    );
-
-
-    // ==========================================
-    // 再生開始
-    // ==========================================
-
-    audio.addEventListener(
-        "play",
-        () => {
-
-            if (
-                currentAudio === audio &&
-                currentButton
-            ) {
-
-                currentButton.textContent =
-                    "Ⅱ";
-
-            }
-
-        }
-    );
-
-
-    // ==========================================
-    // 一時停止
-    // ==========================================
-
-    audio.addEventListener(
-        "pause",
-        () => {
-
-            if (
-                currentAudio === audio &&
-                currentButton
-            ) {
-
-                currentButton.textContent =
-                    "▶";
-
-            }
-
-        }
-    );
-
-
-    // ==========================================
-    // 再生終了
-    // ==========================================
-
-    audio.addEventListener(
-        "ended",
-        () => {
-
-            if (
-                currentAudio !== audio
-            ) {
-
-                return;
-
-            }
-
-
-            if (currentButton) {
-
-                currentButton.textContent =
-                    "▶";
-
-            }
-
-
-            if (currentProgress) {
-
-                currentProgress.value =
-                    0;
-
-            }
-
-
-            if (currentTimeElement) {
-
-                currentTimeElement.textContent =
-                    "0:00";
-
-            }
-
-
-            currentAudio =
-                null;
-
-            currentRadioId =
-                null;
-
-            currentButton =
-                null;
-
-            currentProgress =
-                null;
-
-            currentTimeElement =
-                null;
-
-            currentDurationElement =
-                null;
-
-        }
-    );
-
-
-    // ==========================================
-    // MP3読み込みエラー
-    // ==========================================
-
-    audio.addEventListener(
-        "error",
-        () => {
-
-            if (
-                currentAudio !== audio
-            ) {
-
-                return;
-
-            }
-
-
-            if (button) {
-
-                button.textContent =
-                    "▶";
-
-            }
-
-
-            alert(
-                "このサウンドの音源が見つからないため、再生できません。"
-            );
-
-
-            currentAudio =
-                null;
-
-            currentRadioId =
-                null;
-
-            currentButton =
-                null;
-
-            currentProgress =
-                null;
-
-            currentTimeElement =
-                null;
-
-            currentDurationElement =
-                null;
-
-        }
-    );
-
-
-    // ==========================================
-    // 再生
-    // ==========================================
-
-    audio.play()
-        .then(
-            () => {
-
-                if (
-                    currentAudio === audio &&
-                    currentButton
-                ) {
-
-                    currentButton.textContent =
-                        "Ⅱ";
-
-                }
-
-            }
-        )
-        .catch(
-            () => {
-
-                if (
-                    currentAudio === audio &&
-                    currentButton
-                ) {
-
-                    currentButton.textContent =
-                        "▶";
-
-                }
-
-            }
-        );
-
-}
-
-
-// ==================================================
-// 現在のMP3を停止
-// ==================================================
-
-function stopCurrentAudio() {
-
-    if (!currentAudio) {
-        return;
-    }
-
-
-    const audio =
-        currentAudio;
-
-
-    audio.pause();
-
-
-    try {
-
-        audio.currentTime =
-            0;
-
-    } catch {
-
-    }
-
-
-    if (currentButton) {
-
-        currentButton.textContent =
-            "▶";
-
-    }
-
-
-    if (currentProgress) {
-
-        currentProgress.value =
-            0;
-
-    }
-
-
-    if (currentTimeElement) {
-
-        currentTimeElement.textContent =
-            "0:00";
-
-    }
-
-
-    currentAudio =
-        null;
-
-    currentRadioId =
-        null;
-
-    currentButton =
-        null;
-
-    currentProgress =
-        null;
-
-    currentTimeElement =
-        null;
-
-    currentDurationElement =
-        null;
-
-}
-
-
-// ==================================================
-// 左メニュー開閉
-// ==================================================
-
-const menuButton =
-    document.getElementById(
-        "menuButton"
-    );
-
-const sidebar =
-    document.querySelector(
-        ".sidebar"
-    );
-
-const main =
-    document.querySelector(
-        ".main"
-    );
-
-
-if (
-    menuButton &&
-    sidebar &&
-    main
-) {
-
-    menuButton.addEventListener(
-        "click",
-        () => {
-
-            const isClosed =
-                sidebar.classList.toggle(
-                    "closed"
-                );
-
-
-            main.classList.toggle(
-                "sidebar-closed",
-                isClosed
-            );
-
-        }
-    );
-
-}
-
-
-// ==================================================
-// 初期化
-// ==================================================
-
-createTagFilters();
-
-updateTagButtons();
-
-updateVolumeUI();
-
-displayRadios(
-    getFilteredRadios()
-);
