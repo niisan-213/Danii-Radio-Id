@@ -1,6 +1,6 @@
 // ==================================================
 // Roblox Radio Memo
-// script.js 完全版
+// script.js 完全修正版
 // ==================================================
 //
 // ・MP3試聴
@@ -171,7 +171,8 @@ const radios = [
         mp3: "sounds/114087038177872.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/114087038177872/kyukurarin64",
-        officialUrl: "https://www.youtube.com/watch?v=uZfOFOVIGhE&list=RDuZfOFOVIGhE&start_radio=1",
+        officialUrl:
+            "https://www.youtube.com/watch?v=uZfOFOVIGhE&list=RDuZfOFOVIGhE&start_radio=1",
         tags: [
             "日本",
             "ボカロ"
@@ -201,8 +202,7 @@ const radios = [
             "https://create.roblox.com/store/asset/7024340270/Pegboard-Nerds-Tokyo-Machine-Moshi",
         officialUrl:
             "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
-        tags: [
-        ]
+        tags: []
     },
 
     {
@@ -212,8 +212,7 @@ const radios = [
         mp3: "sounds/140498777165558.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
-        officialUrl:
-            "",
+        officialUrl: "",
         tags: [
             "日本"
         ]
@@ -226,8 +225,7 @@ const radios = [
         mp3: "sounds/72999239742034.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/72999239742034/%E3%81%99%E3%82%8D%E3%83%BC%E3%82%8A%E3%83%BC",
-        officialUrl:
-            "",
+        officialUrl: "",
         tags: [
             "日本",
             "ボカロ"
@@ -252,7 +250,7 @@ const VOLUME_STORAGE_KEY =
 
 
 // ==================================================
-// 個人メモ
+// 個人メモ読み込み
 // ==================================================
 
 let personalNotes = {};
@@ -265,6 +263,13 @@ try {
         ) || "{}"
     );
 
+    if (
+        !personalNotes ||
+        typeof personalNotes !== "object"
+    ) {
+        personalNotes = {};
+    }
+
 } catch {
 
     personalNotes = {};
@@ -273,7 +278,7 @@ try {
 
 
 // ==================================================
-// お気に入り
+// お気に入り読み込み
 // ==================================================
 
 let favorites = new Set();
@@ -287,11 +292,15 @@ try {
             ) || "[]"
         );
 
-    favorites = new Set(
-        savedFavorites.map(
-            id => String(id)
-        )
-    );
+    if (Array.isArray(savedFavorites)) {
+
+        favorites = new Set(
+            savedFavorites.map(
+                id => String(id)
+            )
+        );
+
+    }
 
 } catch {
 
@@ -347,14 +356,11 @@ try {
 function escapeHTML(value) {
 
     return String(value ?? "")
-        function escapeHTML(value) {
-    return String(value ?? "")
-        .replaceAll("&", "&")
-        .replaceAll("<", "<")
-        .replaceAll(">", ">")
-        .replaceAll('"', """)
-        .replaceAll("'", "'");
-}
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
 }
 
@@ -371,6 +377,7 @@ function safeURL(url) {
 
     url = String(url).trim();
 
+    // MP3などの相対パス
     if (
         url.startsWith("./") ||
         url.startsWith("../") ||
@@ -384,7 +391,10 @@ function safeURL(url) {
     try {
 
         const parsed =
-            new URL(url);
+            new URL(
+                url,
+                window.location.href
+            );
 
         if (
             parsed.protocol === "http:" ||
@@ -501,12 +511,22 @@ function getRadioKey(radio) {
 
 function saveFavorites() {
 
-    localStorage.setItem(
-        FAVORITE_STORAGE_KEY,
-        JSON.stringify(
-            Array.from(favorites)
-        )
-    );
+    try {
+
+        localStorage.setItem(
+            FAVORITE_STORAGE_KEY,
+            JSON.stringify(
+                Array.from(favorites)
+            )
+        );
+
+    } catch {
+
+        console.warn(
+            "お気に入りを保存できませんでした。"
+        );
+
+    }
 
 }
 
@@ -574,7 +594,7 @@ function updateVolumeUI() {
     if (volumeSlider) {
 
         volumeSlider.value =
-            volume;
+            String(volume);
 
     }
 
@@ -610,14 +630,19 @@ function setVolume(value) {
             )
         );
 
-    localStorage.setItem(
-        VOLUME_STORAGE_KEY,
-        String(volume)
-    );
+    try {
+
+        localStorage.setItem(
+            VOLUME_STORAGE_KEY,
+            String(volume)
+        );
+
+    } catch {
+
+    }
 
     if (currentAudio) {
 
-        // Audio.volume は 0～1
         currentAudio.volume =
             volume / 100;
 
@@ -804,6 +829,10 @@ typeButtons.forEach(
                 const type =
                     button.dataset.type;
 
+                if (!type) {
+                    return;
+                }
+
                 if (
                     selectedTypes.has(type)
                 ) {
@@ -881,6 +910,7 @@ function getNameCategory(name) {
     const first =
         text.charAt(0);
 
+    // アルファベット
     if (
         /[A-Za-zＡ-Ｚａ-ｚ]/.test(
             first
@@ -891,6 +921,7 @@ function getNameCategory(name) {
 
     }
 
+    // 数字
     if (
         /[0-9０-９]/.test(
             first
@@ -901,8 +932,10 @@ function getNameCategory(name) {
 
     }
 
+    // ひらがな
+    // 元コードの [u3040-u309F] は間違い
     if (
-        /[u3040-u309F]/.test(
+        /[\u3040-\u309F]/.test(
             first
         )
     ) {
@@ -999,6 +1032,10 @@ function sortRadios(list) {
 
             break;
 
+        default:
+
+            break;
+
     }
 
     return sorted;
@@ -1012,38 +1049,73 @@ function sortRadios(list) {
 
 function getFilteredRadios() {
 
+    // ------------------------------------------
+    // キーワード
+    // ------------------------------------------
+
     const keyword =
         searchInput
-            ? searchInput.value
+            ? String(
+                searchInput.value || ""
+            )
                 .trim()
-                .toLowerCase()
+                .toLocaleLowerCase("ja-JP")
             : "";
+
 
     const filtered =
         radios.filter(
             radio => {
 
+                // ==========================================
+                // 検索対象テキスト
+                // ==========================================
+
                 const searchText = [
 
-    radio.name,
-    radio.id,
-    radio.soundSourceUrl,
-    radio.officialUrl,
-    radio.type,
-    ...(radio.tags || []),
+                    radio.name,
 
-    // 個人メモも検索対象にする
-    personalNotes[getRadioKey(radio)] || ""
+                    radio.id,
 
-]
-.join(" ")
-.toLowerCase();
+                    radio.soundSourceUrl,
+
+                    radio.officialUrl,
+
+                    radio.type,
+
+                    ...(radio.tags || []),
+
+                    // 個人メモも検索対象
+                    personalNotes[
+                        getRadioKey(radio)
+                    ] || ""
+
+                ]
+                    .filter(
+                        value =>
+                            value !== null &&
+                            value !== undefined
+                    )
+                    .join(" ")
+                    .toLocaleLowerCase(
+                        "ja-JP"
+                    );
+
+
+                // ==========================================
+                // キーワード一致
+                // ==========================================
 
                 const keywordMatch =
                     !keyword ||
                     searchText.includes(
                         keyword
                     );
+
+
+                // ==========================================
+                // タイプ一致
+                // ==========================================
 
                 let typeMatch = true;
 
@@ -1053,10 +1125,20 @@ function getFilteredRadios() {
 
                     typeMatch =
                         selectedTypes.has(
-                            radio.type
+                            String(
+                                radio.type
+                            )
                         );
 
                 }
+
+
+                // ==========================================
+                // タグ一致
+                //
+                // 複数タグを選んだ場合は
+                // 「どれか1つ」に一致すれば表示
+                // ==========================================
 
                 let tagMatch = true;
 
@@ -1065,7 +1147,14 @@ function getFilteredRadios() {
                 ) {
 
                     const radioTags =
-                        radio.tags || [];
+                        Array.isArray(
+                            radio.tags
+                        )
+                            ? radio.tags.map(
+                                tag =>
+                                    String(tag)
+                            )
+                            : [];
 
                     tagMatch =
                         Array.from(
@@ -1078,6 +1167,11 @@ function getFilteredRadios() {
                         );
 
                 }
+
+
+                // ==========================================
+                // お気に入り一致
+                // ==========================================
 
                 let favoriteMatch = true;
 
@@ -1092,6 +1186,11 @@ function getFilteredRadios() {
 
                 }
 
+
+                // ==========================================
+                // 最終判定
+                // ==========================================
+
                 return (
                     keywordMatch &&
                     typeMatch &&
@@ -1101,6 +1200,11 @@ function getFilteredRadios() {
 
             }
         );
+
+
+    // ==========================================
+    // 並び替え
+    // ==========================================
 
     return sortRadios(
         filtered
@@ -1117,17 +1221,40 @@ function reconnectCurrentAudio() {
 
     if (
         !currentAudio ||
-        !currentRadioId
+        !currentRadioId ||
+        !radioList
     ) {
 
         return;
 
     }
 
-    const button =
-        radioList.querySelector(
-            `.play-button[data-radio-id="${CSS.escape(currentRadioId)}"]`
+    const buttons =
+        radioList.querySelectorAll(
+            ".play-button"
         );
+
+    let button = null;
+
+    buttons.forEach(
+        item => {
+
+            if (
+                String(
+                    item.dataset.radioId
+                ) ===
+                String(
+                    currentRadioId
+                )
+            ) {
+
+                button = item;
+
+            }
+
+        }
+    );
+
 
     if (!button) {
 
@@ -1140,6 +1267,7 @@ function reconnectCurrentAudio() {
 
     }
 
+
     const player =
         button.closest(
             ".player-area"
@@ -1148,6 +1276,7 @@ function reconnectCurrentAudio() {
     if (!player) {
         return;
     }
+
 
     currentButton =
         button;
@@ -1167,13 +1296,21 @@ function reconnectCurrentAudio() {
             ".duration"
         );
 
-    // 再生 / 一時停止状態を反映
+
+    // ------------------------------------------
+    // 再生 / 一時停止状態
+    // ------------------------------------------
+
     button.textContent =
         currentAudio.paused
             ? "▶"
             : "Ⅱ";
 
-    // 再生時間を反映
+
+    // ------------------------------------------
+    // 再生時間
+    // ------------------------------------------
+
     if (
         Number.isFinite(
             currentAudio.duration
@@ -1227,6 +1364,11 @@ function displayRadios(list) {
 
     radioList.innerHTML = "";
 
+
+    // ==========================================
+    // 検索結果0件
+    // ==========================================
+
     if (list.length === 0) {
 
         if (noResult) {
@@ -1240,12 +1382,18 @@ function displayRadios(list) {
 
     }
 
+
     if (noResult) {
 
         noResult.style.display =
             "none";
 
     }
+
+
+    // ==========================================
+    // カード生成
+    // ==========================================
 
     list.forEach(
         radio => {
@@ -1258,14 +1406,21 @@ function displayRadios(list) {
             card.className =
                 "radio-card";
 
+
             const key =
-                getRadioKey(radio);
+                getRadioKey(
+                    radio
+                );
+
 
             const savedNote =
                 personalNotes[key] || "";
 
+
             const isFavorite =
-                favorites.has(key);
+                favorites.has(
+                    key
+                );
 
 
             // ==========================================
@@ -1301,7 +1456,7 @@ function displayRadios(list) {
 
             let playerHTML = "";
 
-            // MP3がある場合だけ再生ボタンを表示
+
             if (mp3) {
 
                 playerHTML = `
@@ -1362,6 +1517,7 @@ function displayRadios(list) {
 
             let soundSourceHTML = "";
 
+
             if (soundSource) {
 
                 soundSourceHTML = `
@@ -1390,6 +1546,7 @@ function displayRadios(list) {
                 );
 
             let officialHTML = "";
+
 
             if (official) {
 
@@ -1507,29 +1664,30 @@ function displayRadios(list) {
 
                 <div class="note-area">
 
-    <p class="note-label">
-        メモ
-    </p>
+                    <p class="note-label">
+                        メモ
+                    </p>
 
-</div>
-
-
-<textarea
-    class="personal-note-input open"
-    data-key="${escapeHTML(key)}"
-    placeholder="自分用のメモ..."
->${escapeHTML(savedNote)}</textarea>
+                </div>
 
 
-<button
-    type="button"
-    class="save-note-button open"
-    data-key="${escapeHTML(key)}"
->
-    保存
-</button>
+                <textarea
+                    class="personal-note-input open"
+                    data-key="${escapeHTML(key)}"
+                    placeholder="自分用のメモ..."
+                >${escapeHTML(savedNote)}</textarea>
+
+
+                <button
+                    type="button"
+                    class="save-note-button open"
+                    data-key="${escapeHTML(key)}"
+                >
+                    保存
+                </button>
 
             `;
+
 
             radioList.appendChild(
                 card
@@ -1544,84 +1702,137 @@ function displayRadios(list) {
     // ==========================================
 
     reconnectCurrentAudio();
+
+
+    // ==========================================
+    // プログレスバーイベント
+    // ==========================================
+
     setupProgressEvents();
 
-// ==========================================
-// 再生していないMP3の長さも取得
-// ==========================================
 
-radioList
-    .querySelectorAll(".play-button")
-    .forEach(button => {
+    // ==========================================
+    // 再生していないMP3の長さも取得
+    // ==========================================
 
-        const url = button.dataset.url;
+    radioList
+        .querySelectorAll(
+            ".play-button"
+        )
+        .forEach(
+            button => {
 
-        if (!url) {
-            return;
-        }
+                const url =
+                    button.dataset.url;
 
-        const player =
-            button.closest(".player-area");
+                if (!url) {
+                    return;
+                }
 
-        if (!player) {
-            return;
-        }
 
-        const durationElement =
-            player.querySelector(".duration");
+                const player =
+                    button.closest(
+                        ".player-area"
+                    );
 
-        if (!durationElement) {
-            return;
-        }
+                if (!player) {
+                    return;
+                }
 
-        // 現在再生中の音源なら、既存のAudioを使う
-        if (
-            currentAudio &&
-            currentRadioId === button.dataset.radioId
-        ) {
-            if (
-                Number.isFinite(
-                    currentAudio.duration
-                )
-            ) {
-                durationElement.textContent =
-                    formatTime(currentAudio.duration);
-            }
 
-            return;
-        }
+                const durationElement =
+                    player.querySelector(
+                        ".duration"
+                    );
 
-        // 長さだけ取得するAudio
-        const audio =
-            new Audio();
+                if (!durationElement) {
+                    return;
+                }
 
-        audio.preload = "metadata";
 
-        audio.addEventListener(
-            "loadedmetadata",
-            () => {
-
+                // 現在再生中の音源
                 if (
-                    Number.isFinite(
-                        audio.duration
-                    )
+                    currentAudio &&
+                    currentRadioId ===
+                        button.dataset.radioId
                 ) {
 
-                    durationElement.textContent =
-                        formatTime(audio.duration);
+                    if (
+                        Number.isFinite(
+                            currentAudio.duration
+                        )
+                    ) {
+
+                        durationElement.textContent =
+                            formatTime(
+                                currentAudio.duration
+                            );
+
+                    }
+
+                    return;
 
                 }
 
-                audio.removeAttribute("src");
-                audio.load();
 
-            },
-            { once: true }
+                // 長さだけ取得
+                const audio =
+                    new Audio();
+
+                audio.preload =
+                    "metadata";
+
+
+                audio.addEventListener(
+                    "loadedmetadata",
+                    () => {
+
+                        if (
+                            Number.isFinite(
+                                audio.duration
+                            )
+                        ) {
+
+                            durationElement.textContent =
+                                formatTime(
+                                    audio.duration
+                                );
+
+                        }
+
+                        audio.removeAttribute(
+                            "src"
+                        );
+
+                        audio.load();
+
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+
+                audio.addEventListener(
+                    "error",
+                    () => {
+
+                        audio.removeAttribute(
+                            "src"
+                        );
+
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+
+                audio.src =
+                    url;
+
+            }
         );
-
-        audio.src = url;
-
-    });
 
 }
 
@@ -1634,7 +1845,11 @@ if (searchInput) {
 
     searchInput.addEventListener(
         "input",
-        applyFilters
+        () => {
+
+            applyFilters();
+
+        }
     );
 
 }
@@ -1648,7 +1863,11 @@ if (sortSelect) {
 
     sortSelect.addEventListener(
         "change",
-        applyFilters
+        () => {
+
+            applyFilters();
+
+        }
     );
 
 }
@@ -1660,8 +1879,11 @@ if (sortSelect) {
 
 function applyFilters() {
 
+    const filtered =
+        getFilteredRadios();
+
     displayRadios(
-        getFilteredRadios()
+        filtered
     );
 
 }
@@ -1691,20 +1913,28 @@ if (radioList) {
                 const id =
                     favoriteButton.dataset.id;
 
+                if (!id) {
+                    return;
+                }
+
                 toggleFavorite(id);
+
 
                 const isFavorite =
                     favorites.has(id);
+
 
                 favoriteButton.classList.toggle(
                     "active",
                     isFavorite
                 );
 
+
                 favoriteButton.textContent =
                     isFavorite
                         ? "★"
                         : "☆";
+
 
                 favoriteButton.setAttribute(
                     "aria-label",
@@ -1713,12 +1943,14 @@ if (radioList) {
                         : "お気に入りに追加"
                 );
 
+
                 favoriteButton.setAttribute(
                     "title",
                     isFavorite
                         ? "お気に入りを解除"
                         : "お気に入りに追加"
                 );
+
 
                 if (
                     favoriteOnly &&
@@ -1748,6 +1980,11 @@ if (radioList) {
                 const tag =
                     tagButton.dataset.tag;
 
+                if (!tag) {
+                    return;
+                }
+
+
                 if (
                     selectedTags.has(tag)
                 ) {
@@ -1763,6 +2000,7 @@ if (radioList) {
                     );
 
                 }
+
 
                 updateTagButtons();
 
@@ -1799,20 +2037,24 @@ if (radioList) {
                     return;
                 }
 
+
                 const progress =
                     player.querySelector(
                         ".progress-bar"
                     );
+
 
                 const currentTime =
                     player.querySelector(
                         ".current-time"
                     );
 
+
                 const duration =
                     player.querySelector(
                         ".duration"
                     );
+
 
                 playMP3(
                     url,
@@ -1821,6 +2063,26 @@ if (radioList) {
                     progress,
                     currentTime,
                     duration
+                );
+
+                return;
+
+            }
+
+
+            // ==========================================
+            // メモ保存
+            // ==========================================
+
+            const saveButton =
+                event.target.closest(
+                    ".save-note-button"
+                );
+
+            if (saveButton) {
+
+                savePersonalNote(
+                    saveButton
                 );
 
                 return;
@@ -1852,22 +2114,37 @@ if (radioList) {
                 return;
             }
 
+
             const id =
                 button.dataset.id;
 
+            if (!id) {
+                return;
+            }
+
+
             try {
 
-                await navigator.clipboard
-                    .writeText(id);
+                await navigator.clipboard.writeText(
+                    id
+                );
+
 
                 button.textContent =
                     "コピー済";
 
+
                 setTimeout(
                     () => {
 
-                        button.textContent =
-                            "コピー";
+                        if (
+                            button.isConnected
+                        ) {
+
+                            button.textContent =
+                                "コピー";
+
+                        }
 
                     },
                     1000
@@ -1875,9 +2152,63 @@ if (radioList) {
 
             } catch {
 
-                alert(
-                    "IDをコピーできませんでした。"
-                );
+                // Clipboard APIが使えない場合
+                try {
+
+                    const textarea =
+                        document.createElement(
+                            "textarea"
+                        );
+
+                    textarea.value =
+                        id;
+
+                    textarea.style.position =
+                        "fixed";
+
+                    textarea.style.opacity =
+                        "0";
+
+                    document.body.appendChild(
+                        textarea
+                    );
+
+                    textarea.focus();
+                    textarea.select();
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+                    textarea.remove();
+
+                    button.textContent =
+                        "コピー済";
+
+
+                    setTimeout(
+                        () => {
+
+                            if (
+                                button.isConnected
+                            ) {
+
+                                button.textContent =
+                                    "コピー";
+
+                            }
+
+                        },
+                        1000
+                    );
+
+                } catch {
+
+                    alert(
+                        "IDをコピーできませんでした。"
+                    );
+
+                }
 
             }
 
@@ -1888,127 +2219,73 @@ if (radioList) {
 
 
 // ==================================================
-// 個人メモ
+// 個人メモ保存
 // ==================================================
 
-if (radioList) {
+function savePersonalNote(
+    saveButton
+) {
 
-    radioList.addEventListener(
-        "click",
-        event => {
+    const key =
+        saveButton.dataset.key;
 
-            // ==========================================
-            // 編集
-            // ==========================================
+    if (!key) {
+        return;
+    }
 
-            const editButton =
-                event.target.closest(
-                    ".note-edit-button"
-                );
 
-            if (editButton) {
+    const textarea =
+        radioList.querySelector(
+            `.personal-note-input[data-key="${CSS.escape(key)}"]`
+        );
 
-                const key =
-                    editButton.dataset.key;
+    if (!textarea) {
+        return;
+    }
 
-                const textarea =
-                    radioList.querySelector(
-                        `.personal-note-input[data-key="${CSS.escape(key)}"]`
-                    );
 
-                const saveButton =
-                    radioList.querySelector(
-                        `.save-note-button[data-key="${CSS.escape(key)}"]`
-                    );
+    personalNotes[key] =
+        textarea.value;
 
-                if (!textarea) {
-                    return;
-                }
 
-                textarea.classList.toggle(
-                    "open"
-                );
+    try {
 
-                if (saveButton) {
+        localStorage.setItem(
+            NOTE_STORAGE_KEY,
+            JSON.stringify(
+                personalNotes
+            )
+        );
 
-                    saveButton.classList.toggle(
-                        "open"
-                    );
+    } catch {
 
-                }
+        alert(
+            "メモを保存できませんでした。"
+        );
 
-                if (
-                    textarea.classList.contains(
-                        "open"
-                    )
-                ) {
+        return;
 
-                    editButton.textContent =
-                        "閉じる";
+    }
 
-                    textarea.focus();
 
-                } else {
+    saveButton.textContent =
+        "保存しました";
 
-                    editButton.textContent =
-                        "編集";
 
-                }
+    setTimeout(
+        () => {
 
-                return;
+            if (
+                saveButton.isConnected
+            ) {
+
+                saveButton.textContent =
+                    "保存";
 
             }
 
-
-            // ==========================================
-            // 保存
-            // ==========================================
-
-            const saveButton =
-                event.target.closest(
-                    ".save-note-button"
-                );
-
-            if (!saveButton) {
-                return;
-            }
-
-            const key =
-                saveButton.dataset.key;
-
-            const textarea =
-                radioList.querySelector(
-                    `.personal-note-input[data-key="${CSS.escape(key)}"]`
-                );
-
-            if (!textarea) {
-                return;
-            }
-
-            personalNotes[key] =
-                textarea.value;
-
-            localStorage.setItem(
-                NOTE_STORAGE_KEY,
-                JSON.stringify(
-                    personalNotes
-                )
-            );
-
-            saveButton.textContent =
-                "保存しました";
-
-            setTimeout(
-                () => {
-
-                    saveButton.textContent =
-                        "保存";
-
-                },
-                1000
-            );
-
-        }
+        },
+        1000
     );
 
 }
@@ -2021,52 +2298,83 @@ if (radioList) {
 function setupProgressEvents() {
 
     document
-        .querySelectorAll(".progress-bar")
-        .forEach(progress => {
+        .querySelectorAll(
+            ".progress-bar"
+        )
+        .forEach(
+            progress => {
 
-            progress.addEventListener(
-                "input",
-                () => {
+                // 同じ要素に何度もイベントを登録しない
+                if (
+                    progress.dataset.progressReady ===
+                    "true"
+                ) {
 
-                    // 現在再生中のAudioではない場合
-                    if (
-                        !currentAudio ||
-                        currentProgress !== progress
-                    ) {
-                        return;
-                    }
-
-                    // 再生時間がまだ取得できていない場合
-                    if (
-                        !Number.isFinite(
-                            currentAudio.duration
-                        ) ||
-                        currentAudio.duration <= 0
-                    ) {
-                        return;
-                    }
-
-                    // バーの位置から再生位置を変更
-                    const percent =
-                        Number(progress.value) / 100;
-
-                    currentAudio.currentTime =
-                        currentAudio.duration * percent;
-
-                    // 時間表示もすぐ更新
-                    if (currentTimeElement) {
-
-                        currentTimeElement.textContent =
-                            formatTime(
-                                currentAudio.currentTime
-                            );
-
-                    }
+                    return;
 
                 }
-            );
 
-        });
+
+                progress.dataset.progressReady =
+                    "true";
+
+
+                progress.addEventListener(
+                    "input",
+                    () => {
+
+                        // 現在再生中のAudioではない
+                        if (
+                            !currentAudio ||
+                            currentProgress !==
+                                progress
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        // 再生時間が未取得
+                        if (
+                            !Number.isFinite(
+                                currentAudio.duration
+                            ) ||
+                            currentAudio.duration <= 0
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const percent =
+                            Number(
+                                progress.value
+                            ) / 100;
+
+
+                        currentAudio.currentTime =
+                            currentAudio.duration *
+                            percent;
+
+
+                        if (
+                            currentTimeElement
+                        ) {
+
+                            currentTimeElement.textContent =
+                                formatTime(
+                                    currentAudio.currentTime
+                                );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
 
 }
 
@@ -2089,13 +2397,17 @@ function playMP3(
     }
 
 
+    const id =
+        String(radioId);
+
+
     // ==========================================
-    // 同じ音源の場合
+    // 同じ音源
     // ==========================================
 
     if (
         currentAudio &&
-        currentRadioId === String(radioId)
+        currentRadioId === id
     ) {
 
         currentButton =
@@ -2111,23 +2423,37 @@ function playMP3(
             duration;
 
 
-        if (currentAudio.paused) {
+        if (
+            currentAudio.paused
+        ) {
 
             currentAudio
                 .play()
                 .then(
                     () => {
 
-                        button.textContent =
-                            "Ⅱ";
+                        if (
+                            currentButton
+                        ) {
+
+                            currentButton.textContent =
+                                "Ⅱ";
+
+                        }
 
                     }
                 )
                 .catch(
                     () => {
 
-                        button.textContent =
-                            "▶";
+                        if (
+                            currentButton
+                        ) {
+
+                            currentButton.textContent =
+                                "▶";
+
+                        }
 
                     }
                 );
@@ -2161,7 +2487,10 @@ function playMP3(
         new Audio(url);
 
 
-    // 重要：
+    audio.preload =
+        "metadata";
+
+
     // Audio.volume は 0～1
     audio.volume =
         volume / 100;
@@ -2171,7 +2500,7 @@ function playMP3(
         audio;
 
     currentRadioId =
-        String(radioId);
+        id;
 
     currentButton =
         button;
@@ -2200,10 +2529,14 @@ function playMP3(
                 )
             ) {
 
-                duration.textContent =
-                    formatTime(
-                        audio.duration
-                    );
+                if (duration) {
+
+                    duration.textContent =
+                        formatTime(
+                            audio.duration
+                        );
+
+                }
 
             }
 
@@ -2220,17 +2553,17 @@ function playMP3(
         () => {
 
             if (
-                !audio.duration ||
                 !Number.isFinite(
                     audio.duration
-                )
+                ) ||
+                audio.duration <= 0
             ) {
 
                 return;
 
             }
 
-            // 現在のカードが再接続後のものでも更新
+
             if (
                 currentAudio === audio &&
                 currentProgress
@@ -2243,6 +2576,7 @@ function playMP3(
                     ) * 100;
 
             }
+
 
             if (
                 currentAudio === audio &&
@@ -2261,6 +2595,50 @@ function playMP3(
 
 
     // ==========================================
+    // 再生開始
+    // ==========================================
+
+    audio.addEventListener(
+        "play",
+        () => {
+
+            if (
+                currentAudio === audio &&
+                currentButton
+            ) {
+
+                currentButton.textContent =
+                    "Ⅱ";
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // 一時停止
+    // ==========================================
+
+    audio.addEventListener(
+        "pause",
+        () => {
+
+            if (
+                currentAudio === audio &&
+                currentButton
+            ) {
+
+                currentButton.textContent =
+                    "▶";
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
     // 再生終了
     // ==========================================
 
@@ -2268,9 +2646,14 @@ function playMP3(
         "ended",
         () => {
 
-            if (currentAudio !== audio) {
+            if (
+                currentAudio !== audio
+            ) {
+
                 return;
+
             }
+
 
             if (currentButton) {
 
@@ -2279,6 +2662,7 @@ function playMP3(
 
             }
 
+
             if (currentProgress) {
 
                 currentProgress.value =
@@ -2286,12 +2670,14 @@ function playMP3(
 
             }
 
+
             if (currentTimeElement) {
 
                 currentTimeElement.textContent =
                     "0:00";
 
             }
+
 
             currentAudio =
                 null;
@@ -2323,9 +2709,14 @@ function playMP3(
         "error",
         () => {
 
-            if (currentAudio !== audio) {
+            if (
+                currentAudio !== audio
+            ) {
+
                 return;
+
             }
+
 
             if (button) {
 
@@ -2334,9 +2725,11 @@ function playMP3(
 
             }
 
+
             alert(
                 "このサウンドの音源が見つからないため、再生できません。"
             );
+
 
             currentAudio =
                 null;
@@ -2361,7 +2754,7 @@ function playMP3(
 
 
     // ==========================================
-    // 再生開始
+    // 再生
     // ==========================================
 
     audio.play()
@@ -2409,10 +2802,13 @@ function stopCurrentAudio() {
         return;
     }
 
+
     const audio =
         currentAudio;
 
+
     audio.pause();
+
 
     try {
 
@@ -2431,12 +2827,14 @@ function stopCurrentAudio() {
 
     }
 
+
     if (currentProgress) {
 
         currentProgress.value =
             0;
 
     }
+
 
     if (currentTimeElement) {
 
@@ -2502,6 +2900,7 @@ if (
                     "closed"
                 );
 
+
             main.classList.toggle(
                 "sidebar-closed",
                 isClosed
@@ -2526,6 +2925,3 @@ updateVolumeUI();
 displayRadios(
     getFilteredRadios()
 );
-
-// プログレスバーのイベントを設定
-setupProgressEvents();
