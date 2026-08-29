@@ -171,7 +171,7 @@ const radios = [
         mp3: "sounds/114087038177872.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/114087038177872/kyukurarin64",
-        officialUrl: "",
+        officialUrl: "https://www.youtube.com/watch?v=uZfOFOVIGhE&list=RDuZfOFOVIGhE&start_radio=1",
         tags: [
             "日本",
             "ボカロ"
