@@ -347,11 +347,14 @@ try {
 function escapeHTML(value) {
 
     return String(value ?? "")
+        function escapeHTML(value) {
+    return String(value ?? "")
         .replaceAll("&", "&")
         .replaceAll("<", "<")
         .replaceAll(">", ">")
         .replaceAll('"', """)
         .replaceAll("'", "'");
+}
 
 }
 
