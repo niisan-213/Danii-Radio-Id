@@ -190,6 +190,20 @@ const radios = [
             "日本",
             "ボカロ"
         ]
+    },
+
+    {
+        name: "Pegboard Nerds & Tokyo Machine - Moshi",
+        id: "7024340270",
+        type: "music",
+        mp3: "sounds/7024340270.mp3",
+        soundSourceUrl:
+            "https://create.roblox.com/store/asset/7024340270/Pegboard-Nerds-Tokyo-Machine-Moshi",
+        officialUrl:
+            "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
+        tags: [
+            "ミーム"
+        ]
     }
 
 ];
