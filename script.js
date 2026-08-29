@@ -101,7 +101,7 @@ const radios = [
         name: "Parry Gripp - Raining Tacos",
         id: "142376088",
         type: "music",
-        mp3: "",
+        mp3: "sounds/142376088.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/142376088/Parry-Gripp-Raining-Tacos",
         officialUrl:
@@ -113,7 +113,7 @@ const radios = [
         name: "RainTemple",
         id: "110829045185545",
         type: "music",
-        mp3: "",
+        mp3: "sounds/110829045185545.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/110829045185545/RainTemple",
         officialUrl: "",
@@ -126,7 +126,7 @@ const radios = [
         name: "Looping In The Backrooms (Remix)",
         id: "76580060470689",
         type: "music",
-        mp3: "",
+        mp3: "sounds/76580060470689.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/76580060470689/Looping-In-The-Backrooms-Remix",
         officialUrl: "",
@@ -140,7 +140,7 @@ const radios = [
         name: "melodia de verão (tiktok edit)",
         id: "118507373399694",
         type: "music",
-        mp3: "",
+        mp3: "sounds/118507373399694.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/118507373399694/melodia-de-vero-tiktok-edit",
         officialUrl:
@@ -154,7 +154,7 @@ const radios = [
         name: "Monet",
         id: "88583608079509",
         type: "music",
-        mp3: "",
+        mp3: "sounds/88583608079509.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/88583608079509/Monet",
         officialUrl: "",
@@ -168,7 +168,7 @@ const radios = [
         name: "kyu-kurarin64",
         id: "114087038177872",
         type: "music",
-        mp3: "",
+        mp3: "sounds/114087038177872.mp3",
         soundSourceUrl:
             "https://create.roblox.com/store/asset/114087038177872/kyukurarin64",
         officialUrl: "",
