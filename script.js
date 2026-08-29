@@ -202,7 +202,6 @@ const radios = [
         officialUrl:
             "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
         tags: [
-            ""
         ]
     },
 
@@ -222,15 +221,16 @@ const radios = [
 
     {
         name: "すろーりーないと",
-        id: "140498777165558",
+        id: "72999239742034",
         type: "music",
-        mp3: "sounds/140498777165558.mp3",
+        mp3: "sounds/72999239742034.mp3",
         soundSourceUrl:
-            "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
+            "https://create.roblox.com/store/asset/72999239742034/%E3%81%99%E3%82%8D%E3%83%BC%E3%82%8A%E3%83%BC",
         officialUrl:
             "",
         tags: [
-            "日本"
+            "日本",
+            "ボカロ"
         ]
     }
 
