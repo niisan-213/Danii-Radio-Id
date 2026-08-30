@@ -412,6 +412,57 @@ const radios = [
     officialUrl: "",       
     tags: [
     ]
+},
+
+{
+    name: "[ Content Deleted ]",
+    id: "16190783774",
+    type: "music",
+    mp3: "sounds/16190783774.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/16190783774",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Din1c - METAMORPHOSIS",
+    id: "15689451063",
+    type: "music",
+    mp3: "sounds/15689451063.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/15689451063",
+    officialUrl: "https://youtu.be/yAG7inGkbzI?si=vMeh1DA-qQkRXXp3",       
+    tags: [
+        "Phonk"
+    ]
+},
+
+{
+    name: "passinho solto",
+    id: "106185171358009",
+    type: "music",
+    mp3: "sounds/106185171358009.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/106185171358009",
+    officialUrl: "",       
+    tags: [
+        "Phonk"
+    ]
+},
+
+{
+    name: "SomethingElse",
+    id: "116657027333405",
+    type: "music",
+    mp3: "sounds/116657027333405.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/116657027333405",
+    officialUrl: "",       
+    tags: [
+        "ボカロ"
+    ]
 }
 
 
