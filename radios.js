@@ -347,9 +347,10 @@ const radios = [
     mp3: "sounds/9045765634.mp3",
     soundSourceUrl:
         "https://create.roblox.com/store/asset/9045765634/",
-    officialUrl: "",       
+    officialUrl: "https://youtu.be/p29JUpsOSTE?si=QPZTsAz_oz6Nvl53",       
     tags: [
-        "ゲーム"
+        "クラシック",
+        "ピアノ"
     ]
 }
 
