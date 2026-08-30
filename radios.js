@@ -368,11 +368,47 @@ const radios = [
 
 {
     name: "ZO Ganbare ganbare senpai",
-    id: "7431081635",
+    id: "effect",
     type: "music",
     mp3: "sounds/7431081635.mp3",
     soundSourceUrl:
         "https://create.roblox.com/store/asset/7431081635/",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "senpai zo",
+    id: "8372921283",
+    type: "effect",
+    mp3: "sounds/8372921283.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/8372921283",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Nya zo",
+    id: "8842446965",
+    type: "music",
+    mp3: "sounds/8842446965.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/8842446965",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Emu Otori saying WONDAHOI",
+    id: "8717909249",
+    type: "effect",
+    mp3: "sounds/8717909249.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/8717909249",
     officialUrl: "",       
     tags: [
     ]
