@@ -6,7 +6,7 @@ const radios = [
     type: "music",
     mp3: "sounds/71934965392436.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/71934965392436/MESMERIZER-Clown-Remix",
+        "https://create.roblox.com/store/asset/71934965392436/",
     officialUrl:
         "https://youtu.be/ZMtrVf3ncmA",
     tags: [
@@ -21,7 +21,7 @@ const radios = [
     type: "music",
     mp3: "sounds/16190783444.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/16190783444/nMisaki-Dubidubidu-Uptempo-Remix",
+        "https://create.roblox.com/store/asset/16190783444/",
     officialUrl:
         "https://youtu.be/ld9rLLLBYmI?si=B5YdQwmz5Jm3RDuA",
     tags: [
@@ -35,7 +35,7 @@ const radios = [
     type: "music",
     mp3: "sounds/76819270320985.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/76819270320985/FLY-Hatsune-MikuVocaloid-ReimaginedDay-1",
+        "https://create.roblox.com/store/asset/76819270320985/",
     officialUrl:
         "https://youtu.be/6t4qe1ZcmKI?si=nvEwxJyD1jPrDOuw",
     tags: [
@@ -49,7 +49,7 @@ const radios = [
     type: "music",
     mp3: "sounds/92292285830973.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/92292285830973/Monitoring-Remix-inspired-by-Deco27",
+        "https://create.roblox.com/store/asset/92292285830973/",
     officialUrl:
         "https://youtu.be/8M8sJINVlAQ?si=Gi-mVunCoyIBHms0",
     tags: [
@@ -64,7 +64,7 @@ const radios = [
     type: "music",
     mp3: "sounds/120871403922972.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/120871403922972/CUTEMAKMAKFUNK-Slowed",
+        "https://create.roblox.com/store/asset/120871403922972/",
     officialUrl:
         "https://youtu.be/abwf-BdPFsQ?si=oS-r8xhUNXreV9On",
     tags: [
@@ -80,7 +80,7 @@ const radios = [
     type: "music",
     mp3: "sounds/142376088.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/142376088/Parry-Gripp-Raining-Tacos",
+        "https://create.roblox.com/store/asset/142376088/",
     officialUrl:
         "https://youtu.be/npjF032TDDQ?si=RWPLV-2XdcH5KjBN",
     tags: []
@@ -92,7 +92,7 @@ const radios = [
     type: "music",
     mp3: "sounds/110829045185545.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/110829045185545/RainTemple",
+        "https://create.roblox.com/store/asset/110829045185545/",
     officialUrl: "",
     tags: [
         "日本"
@@ -105,7 +105,7 @@ const radios = [
     type: "music",
     mp3: "sounds/76580060470689.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/76580060470689/Looping-In-The-Backrooms-Remix",
+        "https://create.roblox.com/store/asset/76580060470689/",
     officialUrl: "",
     tags: [
         "日本",
@@ -119,7 +119,7 @@ const radios = [
     type: "music",
     mp3: "sounds/118507373399694.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/118507373399694/melodia-de-vero-tiktok-edit",
+        "https://create.roblox.com/store/asset/118507373399694/",
     officialUrl:
         "https://youtu.be/eN54PQhfRc8?si=XGSKeZ2asyL4cMAN",
     tags: [
@@ -133,7 +133,7 @@ const radios = [
     type: "music",
     mp3: "sounds/88583608079509.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/88583608079509/Monet",
+        "https://create.roblox.com/store/asset/88583608079509/",
     officialUrl: "",
     tags: [
         "日本",
@@ -147,7 +147,7 @@ const radios = [
     type: "music",
     mp3: "sounds/114087038177872.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/114087038177872/kyukurarin64",
+        "https://create.roblox.com/store/asset/114087038177872/",
     officialUrl:
         "https://www.youtube.com/watch?v=uZfOFOVIGhE&list=RDuZfOFOVIGhE&start_radio=1",
     tags: [
@@ -162,7 +162,7 @@ const radios = [
     type: "music",
     mp3: "sounds/132966669971723.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/132966669971723/%E3%83%8F%E3%83%8A%E3%82%BF%E3%83%90",
+        "https://create.roblox.com/store/asset/132966669971723/",
     officialUrl: "",
     tags: [
         "日本",
@@ -176,7 +176,7 @@ const radios = [
     type: "music",
     mp3: "sounds/7024340270.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/7024340270/Pegboard-Nerds-Tokyo-Machine-Moshi",
+        "https://create.roblox.com/store/asset/7024340270/",
     officialUrl:
         "https://youtu.be/NgPWqeirmrM?si=VRJ5ePvXyL0UwIcu",
     tags: []
@@ -188,7 +188,7 @@ const radios = [
     type: "music",
     mp3: "sounds/140498777165558.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/140498777165558/Solar-Drive",
+        "https://create.roblox.com/store/asset/140498777165558/",
     officialUrl: "",
     tags: [
         "日本"
@@ -201,7 +201,7 @@ const radios = [
     type: "music",
     mp3: "sounds/72999239742034.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/72999239742034/すろーりーないと",
+        "https://create.roblox.com/store/asset/72999239742034/",
     officialUrl: "",
     tags: [
         "日本",
@@ -215,7 +215,7 @@ const radios = [
     type: "music",
     mp3: "sounds/123268426492417.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/123268426492417/トリックハート",
+        "https://create.roblox.com/store/asset/123268426492417/",
     officialUrl: "",
     tags: [
         "日本",
@@ -229,7 +229,7 @@ const radios = [
     type: "music",
     mp3: "sounds/138077217004132.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/138077217004132/くうになる",
+        "https://create.roblox.com/store/asset/138077217004132/",
     officialUrl: "",
     tags: [
         "日本",
@@ -243,7 +243,7 @@ const radios = [
     type: "music",
     mp3: "sounds/93800438751265.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/93800438751265/やっぱり俺の青春ラブコメに何の問題もね",
+        "https://create.roblox.com/store/asset/93800438751265/",
     officialUrl: "",
     tags: [
     ]
@@ -255,7 +255,7 @@ const radios = [
     type: "effect",
     mp3: "sounds/132762282841552.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/132762282841552/huh-car-cat",
+        "https://create.roblox.com/store/asset/132762282841552/",
     officialUrl: "",
     tags: [
         "ミーム"
@@ -268,7 +268,7 @@ const radios = [
     type: "effect",
     mp3: "sounds/4203251375.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/4203251375/iphone-alarm-loud",
+        "https://create.roblox.com/store/asset/4203251375/",
     officialUrl: "",
     tags: [
     ]
@@ -280,7 +280,7 @@ const radios = [
     type: "music",
     mp3: "sounds/71186345039796.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/71186345039796/FindExit",
+        "https://create.roblox.com/store/asset/71186345039796/",
     officialUrl: "",
     tags: [
         "アニメ"
@@ -293,7 +293,7 @@ const radios = [
     type: "music",
     mp3: "sounds/123572020022002.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/123572020022002/Good-Android",
+        "https://create.roblox.com/store/asset/123572020022002/",
     officialUrl: "",
     tags: [
         "日本",
@@ -307,7 +307,7 @@ const radios = [
     type: "music",
     mp3: "sounds/1840776993.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/1840776993/Science-Mysteries",
+        "https://create.roblox.com/store/asset/1840776993/",
     officialUrl: "",
     tags: [
         "ゲーム"
@@ -320,7 +320,7 @@ const radios = [
     type: "music",
     mp3: "sounds/119731837417100.mp3",
     soundSourceUrl:
-        "https://create.roblox.com/store/asset/119731837417100/READY-OR-NOT-SCH00LKIDD-MIX",
+        "https://create.roblox.com/store/asset/119731837417100/",
     officialUrl: "",
     tags: [
         "ゲーム"
