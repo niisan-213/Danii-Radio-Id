@@ -352,6 +352,18 @@ const radios = [
         "クラシック",
         "ピアノ"
     ]
+},
+
+{
+    name: "New sound Pls dont ban me",
+    id: "7896694622",
+    type: "music",
+    mp3: "sounds/7896694622.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/7896694622/",
+    officialUrl: "",       
+    tags: [
+    ]
 }
 
 ];
