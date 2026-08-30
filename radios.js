@@ -327,7 +327,7 @@ const radios = [
     ]
 },
 
-    {
+{
     name: "Steve’s Lava Chicken Snack (Minecraft Movie Song)",
     id: "111172243066964",
     type: "music",
