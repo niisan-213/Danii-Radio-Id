@@ -324,6 +324,20 @@ const radios = [
     tags: [
         "ゲーム"
     ]
+},
+
+    {
+    name: "Steve’s Lava Chicken Snack (Minecraft Movie Song)",
+    id: "111172243066964",
+    type: "music",
+    mp3: "sounds/111172243066964.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/111172243066964/",
+    officialUrl:
+        "",
+    tags: [
+        "ゲーム"
+    ]
 }
 
 ];
