@@ -463,6 +463,30 @@ const radios = [
     tags: [
         "ボカロ"
     ]
+},
+
+{
+    name: "Dr. Livesey",
+    id: "11010019801",
+    type: "music",
+    mp3: "sounds/11010019801.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/11010019801",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Explosion Meme",
+    id: "7172658577",
+    type: "effect",
+    mp3: "sounds/7172658577.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/7172658577",
+    officialUrl: "",       
+    tags: [
+    ]
 }
 
 
