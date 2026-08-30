@@ -696,7 +696,7 @@ body {
 
     padding: 9px;
 
-    resize: vertical;
+    resize: none;
 
     border: 1px solid #dedfdb;
 
