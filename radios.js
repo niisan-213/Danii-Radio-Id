@@ -368,8 +368,8 @@ const radios = [
 
 {
     name: "ZO Ganbare ganbare senpai",
-    id: "effect",
-    type: "music",
+    id: "7431081635",
+    type: "effect",
     mp3: "sounds/7431081635.mp3",
     soundSourceUrl:
         "https://create.roblox.com/store/asset/7431081635/",
