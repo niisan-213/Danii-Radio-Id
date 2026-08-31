@@ -807,7 +807,7 @@ const radios = [
 },
 
 {
-    name: "？",
+    name: "zo",
     id: "8494188412",
     type: "music",
     mp3: "sounds/8494188412.mp3",
