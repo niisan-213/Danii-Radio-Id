@@ -739,6 +739,57 @@ const radios = [
     tags: [
         "東方"
     ]
+},
+
+{
+    name: "CNTT ISPACE-DJ EIKAYY",
+    id: "133791985729759",
+    type: "music",
+    mp3: "sounds/133791985729759.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/133791985729759",
+    officialUrl: "",       
+    tags: [
+        "アニメ",
+        "Phonk"
+    ]
+},
+
+{
+    name: "Bloom Nobly",
+    id: "96064742512079",
+    type: "music",
+    mp3: "sounds/96064742512079.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/96064742512079",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "UnderMagic",
+    id: "91007045451630",
+    type: "music",
+    mp3: "sounds/91007045451630.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/91007045451630",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "소나소나다",
+    id: "113404106205499",
+    type: "music",
+    mp3: "sounds/113404106205499.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/113404106205499",
+    officialUrl: "",       
+    tags: [
+        "Phonk"
+    ]
 }
 
 
