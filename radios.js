@@ -487,6 +487,258 @@ const radios = [
     officialUrl: "",       
     tags: [
     ]
+},
+
+{
+    name: "Sans does a funny",
+    id: "4481852618",
+    type: "music",
+    mp3: "sounds/4481852618.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/4481852618",
+    officialUrl: "",       
+    tags: [
+        "ゲーム"
+    ]
+},
+
+{
+    name: "MONTAGEM - ANGEL - Speed Up",
+    id: "139593870988593",
+    type: "music",
+    mp3: "sounds/139593870988593.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/139593870988593",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "zverev 2006.avi",
+    id: "129519150385623",
+    type: "music",
+    mp3: "sounds/129519150385623.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/129519150385623",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "hardtekk test 2",
+    id: "126789857899313",
+    type: "music",
+    mp3: "sounds/126789857899313.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/126789857899313",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Solar Drive",
+    id: "140498777165558",
+    type: "music",
+    mp3: "sounds/140498777165558.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/140498777165558",
+    officialUrl: "",       
+    tags: [
+        "日本"
+    ]
+},
+
+{
+    name: "Fantasia",
+    id: "74017941090102",
+    type: "music",
+    mp3: "sounds/74017941090102.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/74017941090102",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Chirumiru",
+    id: "78191238721958",
+    type: "music",
+    mp3: "sounds/78191238721958.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/78191238721958",
+    officialUrl: "",       
+    tags: [
+        "東方"
+    ]
+},
+
+{
+    name: "HeadMovement",
+    id: "91880667600012",
+    type: "music",
+    mp3: "sounds/91880667600012.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/91880667600012",
+    officialUrl: "",       
+    tags: [
+        "日本",
+        "ボカロ"
+    ]
+},
+
+{
+    name: "SawSmile",
+    id: "105101200197308",
+    type: "music",
+    mp3: "sounds/105101200197308.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/105101200197308",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "FogSmile",
+    id: "81662170223359",
+    type: "music",
+    mp3: "sounds/81662170223359.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/81662170223359",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Tetra",
+    id: "139669042198393",
+    type: "music",
+    mp3: "sounds/139669042198393.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/139669042198393",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Dion Timmer - Shiawase",
+    id: "5409360995",
+    type: "music",
+    mp3: "sounds/5409360995.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/5409360995",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "EyeFuture",
+    id: "72104510106078",
+    type: "music",
+    mp3: "sounds/72104510106078.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/72104510106078",
+    officialUrl: "",       
+    tags: [
+    ]
+},
+
+{
+    name: "Idol",
+    id: "84376069097324",
+    type: "music",
+    mp3: "sounds/84376069097324.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/84376069097324",
+    officialUrl: "",       
+    tags: [
+        "アニメ"
+    ]
+},
+
+{
+    name: "The Worlds Mine",
+    id: "74035798774776",
+    type: "music",
+    mp3: "sounds/74035798774776.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/74035798774776",
+    officialUrl: "",       
+    tags: [
+        "アニメ"
+    ]
+},
+
+{
+    name: "PerfectClass",
+    id: "122434155416999",
+    type: "music",
+    mp3: "sounds/122434155416999.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/122434155416999",
+    officialUrl: "",       
+    tags: [
+        "東方"
+    ]
+},
+
+{
+    name: "oiiaioiiiiai -OIIA JAPANESE REMIX-",
+    id: "122702340645056",
+    type: "music",
+    mp3: "sounds/122702340645056.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/122702340645056",
+    officialUrl: "",       
+    tags: [
+        "ミーム"
+    ]
+},
+
+{
+    name: "紅魔館 - Scarlet Devil Mansion",
+    id: "139107504031697",
+    type: "music",
+    mp3: "sounds/139107504031697.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/139107504031697",
+    officialUrl: "",       
+    tags: [
+        "東方"
+    ]
+},
+
+{
+    name: "Bad Apple Orchestral",
+    id: "123083856872107",
+    type: "music",
+    mp3: "sounds/123083856872107.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/123083856872107",
+    officialUrl: "",       
+    tags: [
+        "東方"
+    ]
+},
+
+{
+    name: "Night of Nights (Flowering nights)",
+    id: "71063184072814",
+    type: "music",
+    mp3: "sounds/71063184072814.mp3",
+    soundSourceUrl:
+        "https://create.roblox.com/store/asset/71063184072814",
+    officialUrl: "",       
+    tags: [
+        "東方"
+    ]
 }
 
 
