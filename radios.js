@@ -539,19 +539,6 @@ const radios = [
 },
 
 {
-    name: "Solar Drive",
-    id: "140498777165558",
-    type: "music",
-    mp3: "sounds/140498777165558.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/140498777165558",
-    officialUrl: "",       
-    tags: [
-        "日本"
-    ]
-},
-
-{
     name: "Fantasia",
     id: "74017941090102",
     type: "music",
