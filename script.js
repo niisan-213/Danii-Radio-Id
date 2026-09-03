@@ -1513,29 +1513,18 @@ list.forEach(
             ${playerHTML}
 
 
-            <div class="url-area">
+                    <div class="url-area">
 
-                <p class="url-label">
-                    サウンド元
-                </p>
+            <p class="url-label">
+                サウンド元
+            </p>
 
-                ${soundSourceHTML}
+            ${soundSourceHTML}
 
-            </div>
-
-
-            <div class="url-area">
-
-                <p class="url-label">
-                    本家URL
-                </p>
-
-                ${officialHTML}
-
-            </div>
+        </div>
 
 
-            <div class="note-area">
+        <div class="note-area">
 
                 <p class="note-label">
                     メモ
