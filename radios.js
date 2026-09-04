@@ -533,7 +533,8 @@ const radios = [
     soundSourceUrl:
         "https://create.roblox.com/store/asset/74035798774776",
     tags: [
-        "アニメ"
+        "アニメ",
+        "ボカロ"
     ]
 },
 
