@@ -445,17 +445,6 @@ const radios = [
 },
 
 {
-    name: "hardtekk test 2",
-    id: "126789857899313",
-    type: "music",
-    mp3: "sounds/126789857899313.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/126789857899313",
-    tags: [
-    ]
-},
-
-{
     name: "Fantasia",
     id: "74017941090102",
     type: "music",
