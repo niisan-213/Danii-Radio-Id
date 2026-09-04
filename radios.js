@@ -514,17 +514,6 @@ const radios = [
 },
 
 {
-    name: "EyeFuture",
-    id: "72104510106078",
-    type: "music",
-    mp3: "sounds/72104510106078.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/72104510106078",
-    tags: [
-    ]
-},
-
-{
     name: "Idol",
     id: "84376069097324",
     type: "music",
