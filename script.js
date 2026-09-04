@@ -1533,20 +1533,11 @@ list.forEach(
             </div>
 
 
-            <textarea
-                class="personal-note-input open"
-                data-key="${escapeHTML(key)}"
-                placeholder="自分用のメモ..."
-            >${escapeHTML(savedNote)}</textarea>
-
-
-            <button
-                type="button"
-                class="save-note-button open"
-                data-key="${escapeHTML(key)}"
-            >
-                保存
-            </button>
+        <textarea
+            class="personal-note-input open"
+            data-key="${escapeHTML(key)}"
+            placeholder="自分用のメモ..."
+        >${escapeHTML(savedNote)}</textarea>
 
         `;
 
@@ -1978,27 +1969,6 @@ radioList.addEventListener(
 
         }
 
-
-        // ==========================================
-        // メモ保存
-        // ==========================================
-
-        const saveButton =
-            event.target.closest(
-                ".save-note-button"
-            );
-
-
-        if (saveButton) {
-
-            savePersonalNote(
-                saveButton
-            );
-
-            return;
-
-        }
-
     }
 );
 
@@ -2169,13 +2139,43 @@ setTimeout(
 // 個人メモ保存
 // ==================================================
 
-function savePersonalNote(
-saveButton
-) {
+// ==================================================
+// 個人メモ自動保存
+// ==================================================
 
-if (!radioList) {
+function savePersonalNote(textarea) {
 
-    return;
+    if (!textarea) {
+        return;
+    }
+
+    const key =
+        textarea.dataset.key;
+
+    if (!key) {
+        return;
+    }
+
+    personalNotes[key] =
+        textarea.value;
+
+    try {
+
+        localStorage.setItem(
+            NOTE_STORAGE_KEY,
+            JSON.stringify(
+                personalNotes
+            )
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "メモ保存エラー",
+            error
+        );
+
+    }
 
 }
 
