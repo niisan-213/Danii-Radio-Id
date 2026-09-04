@@ -445,28 +445,6 @@ const radios = [
 },
 
 {
-    name: "MONTAGEM - ANGEL - Speed Up",
-    id: "139593870988593",
-    type: "music",
-    mp3: "sounds/139593870988593.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/139593870988593",
-    tags: [
-    ]
-},
-
-{
-    name: "zverev 2006.avi",
-    id: "129519150385623",
-    type: "music",
-    mp3: "sounds/129519150385623.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/129519150385623",
-    tags: [
-    ]
-},
-
-{
     name: "hardtekk test 2",
     id: "126789857899313",
     type: "music",
