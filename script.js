@@ -1526,19 +1526,18 @@ list.forEach(
 
         <div class="note-area">
 
-                <p class="note-label">
-                    メモ
-                </p>
+    <p class="note-label">
+        メモ
+    </p>
 
-            </div>
+</div>
 
 
-        <textarea
-            class="personal-note-input open"
-            data-key="${escapeHTML(key)}"
-            placeholder="自分用のメモ..."
-        >${escapeHTML(savedNote)}</textarea>
-
+<textarea
+    class="personal-note-input open"
+    data-key="${escapeHTML(key)}"
+    placeholder="自分用のメモ..."
+>${escapeHTML(savedNote)}</textarea>
         `;
 
 
@@ -2135,9 +2134,6 @@ setTimeout(
 );
 
 }
-// ==================================================
-// 個人メモ保存
-// ==================================================
 
 // ==================================================
 // 個人メモ自動保存
@@ -2180,78 +2176,66 @@ function savePersonalNote(textarea) {
 }
 
 
-const key =
-    saveButton.dataset.key;
+// ==================================================
+// メモ入力時に自動保存
+// ==================================================
 
+if (radioList) {
 
-if (!key) {
+    radioList.addEventListener(
+        "input",
+        event => {
 
-    return;
+            const textarea =
+                event.target.closest(
+                    ".personal-note-input"
+                );
 
-}
+            if (!textarea) {
+                return;
+            }
 
-
-const textarea =
-    radioList.querySelector(
-        `.personal-note-input[data-key="${CSS.escape(key)}"]`
-    );
-
-
-if (!textarea) {
-
-    return;
-
-}
-
-
-personalNotes[key] =
-    textarea.value;
-
-
-try {
-
-    localStorage.setItem(
-        NOTE_STORAGE_KEY,
-        JSON.stringify(
-            personalNotes
-        )
-    );
-
-} catch (error) {
-
-    console.warn(
-        "メモ保存エラー",
-        error
-    );
-
-    alert(
-        "メモを保存できませんでした。"
-    );
-
-    return;
-
-}
-
-
-saveButton.textContent =
-    "保存しました";
-
-
-setTimeout(
-    () => {
-
-        if (
-            saveButton.isConnected
-        ) {
-
-            saveButton.textContent =
-                "保存";
+            savePersonalNote(
+                textarea
+            );
 
         }
+    );
 
-    },
-    1000
-);
+
+    // ==============================================
+    // Ctrl + Enter でも保存
+    // ==============================================
+
+    radioList.addEventListener(
+        "keydown",
+        event => {
+
+            const textarea =
+                event.target.closest(
+                    ".personal-note-input"
+                );
+
+            if (!textarea) {
+                return;
+            }
+
+
+            if (
+                event.key === "Enter" &&
+                event.ctrlKey
+            ) {
+
+                savePersonalNote(
+                    textarea
+                );
+
+                event.preventDefault();
+
+            }
+
+        }
+    );
 
 }
 // ==================================================
