@@ -656,18 +656,6 @@ const radios = [
         "日本",
         "ボカロ"
     ]
-},
-
-{
-    name: "zo",
-    id: "8494188412",
-    type: "music",
-    mp3: "sounds/8494188412.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/8494188412",
-    tags: [
-        "日本"
-    ]
 }
 
 
