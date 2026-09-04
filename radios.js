@@ -481,17 +481,6 @@ const radios = [
 },
 
 {
-    name: "SawSmile",
-    id: "105101200197308",
-    type: "music",
-    mp3: "sounds/105101200197308.mp3",
-    soundSourceUrl:
-        "https://create.roblox.com/store/asset/105101200197308",
-    tags: [
-    ]
-},
-
-{
     name: "FogSmile",
     id: "81662170223359",
     type: "music",
