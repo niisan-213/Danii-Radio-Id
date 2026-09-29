@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaniiRadioMemo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div>
+                <h1>RobloxRadioID Memo</h1>
+            </div>
+
+            <div class="header-actions">
+                <div class="search-box">
+    <div id="selectedTagArea" class="selected-tag-area"></div>
+
+    <input
+        id="searchInput"
+        type="text"
+        placeholder="曲名・ID・アップロード者を検索"
+    >
+</div>
+
+                <button id="favoriteFilterButton" class="filter-button">
+                    ☆ お気に入り
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div id="radioCount" class="radio-count"></div>
+
+        <section id="radioList" class="radio-list"></section>
+
+        <div id="emptyMessage" class="empty-message hidden">
+            <h2>音源が見つかりません</h2>
+            <p>検索条件を変更してみてください。</p>
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="radios.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
