@@ -18,5 +18,30 @@ const radios = [
         id: "92292285830973",
         title: "Monitoring Remix (inspired by Deco27)",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "120871403922972",
+        title: "CUTEMAKMAKFUNK (Slowed)",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "142376088",
+        title: "Parry Gripp - Raining Tacos",
+        uploader: "@ParryGripp"
+    },
+    {
+        id: "88583608079509",
+        title: "Monet",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "110829045185545",
+        title: "RainTemple",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "76580060470689",
+        title: "Looping In The Backrooms (Remix)",
+        uploader: "@Clippsly"
     }
 ];
