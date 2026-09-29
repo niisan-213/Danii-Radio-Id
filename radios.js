@@ -83,5 +83,30 @@ const radios = [
         id: "72999239742034",
         title: "すろーりーないと",
         uploader: "@Clippsly"
+    },
+    {
+        id: "138077217004132",
+        title: "くうになる",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "93800438751265",
+        title: "やっぱり俺の青春ラブコメに何の問題もね",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "132762282841552",
+        title: "huh car cat",
+        uploader: "@bxqyo"
+    },
+    {
+        id: "4203251375",
+        title: "iphone alarm [loud]",
+        uploader: "@Kiriakashi"
+    },
+    {
+        id: "71186345039796",
+        title: "FindExit",
+        uploader: "@DistrokidOfficial"
     }
 ];
