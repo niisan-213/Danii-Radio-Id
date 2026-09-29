@@ -91,7 +91,7 @@ button {
 
 #searchInput:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-light);
+    box-shadow: none;
 }
 
 .filter-button {
