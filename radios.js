@@ -338,5 +338,25 @@ const radios = [
         id: "114339730158889",
         title: "perpetual",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "82149511707056",
+        title: "7 WEEKS AND 3 DAYS FUNK",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "118574730811566",
+        title: "Necrofantasia",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "90851490275942",
+        title: "BAD HARDTEKK",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "108612014687102",
+        title: "Xyanua",
+        uploader: "@DistrokidOfficial"
     }
 ];
