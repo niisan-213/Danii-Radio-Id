@@ -318,5 +318,25 @@ const radios = [
         id: "8494188412",
         title: "ZO",
         uploader: "@growivplaysroblox"
+    },
+    {
+        id: "110919391228823",
+        title: "Low Cortisol",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "87570666848900",
+        title: "TRMAF R3M",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "121239777513594",
+        title: "FriendWind",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "114339730158889",
+        title: "perpetual",
+        uploader: "@DistrokidOfficial"
     }
 ];
