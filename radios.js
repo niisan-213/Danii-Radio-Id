@@ -223,5 +223,40 @@ const radios = [
         id: "78191238721958",
         title: "Chirumiru",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "91880667600012",
+        title: "HeadMovement",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "105101200197308",
+        title: "SawSmile",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "81662170223359",
+        title: "FogSmile",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "139669042198393",
+        title: "Tetra",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "5409360995",
+        title: "Dion Timmer - Shiawase",
+        uploader: "@Monstercat"
+    },
+    {
+        id: "72104510106078",
+        title: "EyeFuture",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "84376069097324",
+        title: "Idol",
+        uploader: "@DistrokidOfficial"
     }
 ];
