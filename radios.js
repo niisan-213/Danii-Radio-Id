@@ -298,5 +298,25 @@ const radios = [
         id: "96064742512079",
         title: "Bloom Nobly",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "91007045451630",
+        title: "UnderMagic",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "113404106205499",
+        title: "소나소나다",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "116273924154778",
+        title: "CloneMovements",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "8494188412",
+        title: "ZO",
+        uploader: "@growivplaysroblox"
     }
 ];
