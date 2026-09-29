@@ -575,10 +575,6 @@ button {
     text-decoration: underline;
 }
 
-/* ========================================
-   タグ検索
-======================================== */
-
 .search-box {
     display: flex;
     align-items: center;
