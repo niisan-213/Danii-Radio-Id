@@ -108,5 +108,25 @@ const radios = [
         id: "71186345039796",
         title: "FindExit",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "123572020022002",
+        title: "Good Android",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "1840776993",
+        title: "Science Mysteries",
+        uploader: "@APMOfficial"
+    },
+    {
+        id: "119731837417100",
+        title: "READY OR NOT (SCH00LKIDD MIX)",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "111172243066964",
+        title: "Steve’s Lava Chicken Snack (Minecraft Movie Song)",
+        uploader: "@DistrokidOfficial"
     }
 ];
