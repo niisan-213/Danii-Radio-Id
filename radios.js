@@ -128,5 +128,100 @@ const radios = [
         id: "111172243066964",
         title: "Steve’s Lava Chicken Snack (Minecraft Movie Song)",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "9045765634",
+        title: "Nocturne in E-Flat Major, Op. 9, No. 2",
+        uploader: "@APMOfficial"
+    },
+    {
+        id: "7896694622",
+        title: "New sound Pls dont ban me",
+        uploader: "@K0U3EI"
+    },
+    {
+        id: "7431081635",
+        title: "ZO Ganbare ganbare senpai",
+        uploader: "@ToxicV_0"
+    },
+    {
+        id: "8372921283",
+        title: "senpai zo",
+        uploader: "@Definitely_kaz"
+    },
+    {
+        id: "8842446965",
+        title: "Nya zo",
+        uploader: "@FurTheDev"
+    },
+    {
+        id: "8717909249",
+        title: "Emu Otori saying WONDAHOI",
+        uploader: "@DeSwoleCat"
+    },
+    {
+        id: "16190783774",
+        title: "[ Content Deleted ]",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "15689451063",
+        title: "Din1c - METAMORPHOSIS",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "106185171358009",
+        title: "passinho solto",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "116657027333405",
+        title: "SomethingElse",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "11010019801",
+        title: "Dr. Livesey",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "7172658577",
+        title: "Explosion Meme",
+        uploader: "@lsestram"
+    },
+    {
+        id: "4481852618",
+        title: "Sans does a funny",
+        uploader: "@batmanray789"
+    },
+    {
+        id: "139593870988593",
+        title: "MONTAGEM - ANGEL - Speed Up",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "129519150385623",
+        title: "zverev 2006.avi",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "126789857899313",
+        title: "hardtekk test 2",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "140498777165558",
+        title: "Solar Drive",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "74017941090102",
+        title: "Fantasia",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "78191238721958",
+        title: "Chirumiru",
+        uploader: "@DistrokidOfficial"
     }
 ];
