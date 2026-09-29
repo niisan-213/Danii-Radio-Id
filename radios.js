@@ -258,5 +258,25 @@ const radios = [
         id: "84376069097324",
         title: "Idol",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "74035798774776",
+        title: "The Worlds Mine",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "122434155416999",
+        title: "PerfectClass",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "122702340645056",
+        title: "oiiaioiiiiai -OIIA JAPANESE REMIX-",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "139107504031697",
+        title: "紅魔館 - Scarlet Devil Mansion",
+        uploader: "@DistrokidOfficial"
     }
 ];
