@@ -43,5 +43,25 @@ const radios = [
         id: "76580060470689",
         title: "Looping In The Backrooms (Remix)",
         uploader: "@Clippsly"
+    },
+    {
+        id: "118507373399694",
+        title: "melodia de verão (tiktok edit)",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "7024340270",
+        title: "Pegboard Nerds & Tokyo Machine - Moshi",
+        uploader: "@Monstercat"
+    },
+    {
+        id: "128857183932211",
+        title: "epic kaisen",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "114087038177872",
+        title: "kyu-kurarin64",
+        uploader: "@DistrokidOfficial"
     }
 ];
