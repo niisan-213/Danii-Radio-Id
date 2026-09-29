@@ -1008,7 +1008,7 @@ function createRadioCard(radio) {
         () => {
 
             playButton.textContent =
-                "⏹";
+                "II";
 
             playButton.title =
                 "一時停止";
