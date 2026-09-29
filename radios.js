@@ -63,5 +63,25 @@ const radios = [
         id: "114087038177872",
         title: "kyu-kurarin64",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "135308045",
+        title: "sad violin",
+        uploader: "@nettimato"
+    },
+    {
+        id: "132966669971723",
+        title: "ハナタバ",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "123268426492417",
+        title: "トリックハート",
+        uploader: "@Clippsly"
+    },
+    {
+        id: "72999239742034",
+        title: "すろーりーないと",
+        uploader: "@Clippsly"
     }
 ];
