@@ -278,5 +278,25 @@ const radios = [
         id: "139107504031697",
         title: "紅魔館 - Scarlet Devil Mansion",
         uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "123083856872107",
+        title: "Bad Apple Orchestral",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "71063184072814",
+        title: "Night of Nights (Flowering nights)",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "133791985729759",
+        title: "CNTT ISPACE-DJ EIKAYY",
+        uploader: "@DistrokidOfficial"
+    },
+    {
+        id: "96064742512079",
+        title: "Bloom Nobly",
+        uploader: "@DistrokidOfficial"
     }
 ];
